@@ -1,0 +1,631 @@
+{% extends 'sentiment/base.html' %}
+{% block title %}Recommendation for your personality{% endblock %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+  body
+    {
+       background-color: #E8ECED;
+
+      }
+
+
+        .container1
+        {
+             position:absolute;
+             margin-top:-27.8%;
+             height: auto;
+             width: 69.9%;
+             background-color:white;
+             margin-left:14.5%;
+             border-radius: 5px;
+                 padding-bottom: 45px;
+        }
+        .container4
+        {
+             margin-left:14.5%;
+             position:absolute;
+             height: 50%;
+             width: 69.9%;
+              margin-top:35.8%;
+           /*  background-color:red;*/
+
+        }
+
+       .container2
+       {
+         /* padding-left: 10%;
+*/          border-top: 1px solid #D3D3D3;
+          border-left: 1px solid #D3D3D3;
+            border-right: 1px solid #D3D3D3;
+          width:80%;
+          height:309px;
+          margin-left: 10%;
+      }
+      .container3
+      {
+
+
+          width:80%;
+          height:auto;
+          margin-left: 10%;
+      }
+      .file
+      {
+        width: 100%;
+        height: 1.5rem;
+        text-align: center;
+        color: white;
+      }
+      table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+
+
+}
+
+td, th {
+  border-bottom: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:hover {
+  background-color: #EDF2F4;
+}
+td {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+#bar {
+
+        height: 1rem;
+        text-align: center;
+        color: white;
+        background-image:blue;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius:100px;
+    }
+
+
+   #head1
+   {
+      margin-left:90px;
+      font-size:27.5px;
+      font-weight:600;
+      font-family: Arial, Helvetica, sans-serif;
+   }
+   #head
+   {
+      margin-left:10%;
+      margin-top:28px;
+      font-size:22px;
+      font-weight:600;
+     font-family: Arial, Helvetica, sans-serif;
+   }
+   #head2
+   {
+      margin-left:10%;
+      margin-top:25px;
+      font-size:22px;
+      font-weight:600;
+     font-family: Arial, Helvetica, sans-serif;
+   }
+    #head3
+   {
+
+      font-size:30px;
+      font-weight:400;
+     font-family:Arial, Helvetica, sans-serif;
+   }
+    #head4
+   {
+
+      margin-top:25px;
+      padding:0px 20px;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6rem;
+      text-align: justify;
+
+   }
+        #btn a{
+        color:white;
+        }
+         #btn1 a{
+        color:black;
+        }
+              #btn
+           {
+                 border: none;
+
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  background-color:#F95C39;
+  border-radius:3px;
+  font-weight:bold;
+    margin-left: 15%;
+  margin-top:3%;
+           }
+             #btn:hover
+           {
+              background-color:#F95C39;
+              opacity: 0.9;
+
+           }
+           button a{
+             text-decoration:none;
+           }
+             #btn1:hover
+           {
+             border:1px solid black;
+           }
+             #btn1
+           {
+                 border: none;
+  color: white;
+  padding: 10px 70px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  background-color: white;
+ border: 2px solid lightgray;
+  border-radius:3px;
+  font-weight:bold;
+  margin-top:-10000%;
+  color:black;
+      margin-left: 1.5%;
+           }
+           .container5
+           {
+            display:flex;
+           }
+           .card1
+           {
+               background-color:#FFFFFF;
+               width:70%;
+               height:auto;
+               margin-left:-1%;
+               padding:1px 10px;
+                padding-bottom: 15px;
+           }
+            .card2
+           {
+                  background-color: #FFFFFF;
+    width: 70%;
+    height: auto;
+    margin-left: 4%;
+    padding: 1px 10px;
+    padding-bottom: 15px;
+           }
+            .card3
+           {
+               background-color:#FFFFFF;
+              width:70%;
+               height:auto;
+              margin-left:4%;
+               padding:1px 10px;
+               border-radius:5px;
+                padding-bottom: 15px;
+           }
+           #con
+           {               font-size:20px;
+            font-family:Arial, Helvetica, sans-serif;
+color:black;
+           }
+
+           #head5
+           {
+                 margin-top: -0.5%;
+                margin-bottom:2.5%;
+
+
+      font-family: Arial, Helvetica, sans-serif;
+           }
+
+           }
+           img {
+    vertical-align: middle;
+    margin-left: 67.5px;
+
+}
+           .card1:hover img{
+  transform: scale(1.05);
+
+}
+           .card1:hover p{
+  transform: scale(1.05);
+
+}
+a:hover{
+  text-decoration:none;
+}
+#link
+{
+      text-decoration:none;
+      margin-top:10%;
+}
+           .card2:hover img{
+  transform: scale(1.05);
+
+}
+           .card2:hover p{
+  transform: scale(1.05);
+
+}
+
+           .card3:hover img{
+  transform: scale(1.05);
+
+}
+           .card3:hover p{
+  transform: scale(1.05);
+
+}
+<!--###TOOLTIP-->
+
+
+
+a.tooltip {outline:none; }
+a.tooltip strong {line-height:30px;}
+a.tooltip:hover {text-decoration:none;}
+a.tooltip span {
+
+    z-index:10;display:none; padding:14px 20px;
+    margin-top:-30px; margin-left:28px;
+    width:300px; line-height:16px;
+}
+a.tooltip:hover span{
+    display:inline; position:absolute; color:#111;
+    border:1px solid #DCA; background:#fffAF0;}
+.callout {z-index:20;position:absolute;top:30px;border:0;left:-12px;}
+
+/*CSS3 extras*/
+a.tooltip span
+{
+    border-radius:4px;
+    box-shadow: 5px 5px 8px #CCC;
+}
+
+
+tr .spnTooltip {
+    z-index:10;display:none; padding:14px 20px;
+    margin-top:-30px; margin-left:28px;
+    width:300px; line-height:16px;
+}
+tr:hover .spnTooltip{
+
+    display:inline; position:absolute; color:#111;
+    border:1px solid #DCA; background:#fffAF0;}
+.callout {z-index:20;position:absolute;top:30px;border:0;left:-12px;}
+
+
+
+
+
+   .footer-clean {
+  padding: 20px 0;
+  /background-color:red;/
+  background-color: #11aacb;
+  background-image:
+    linear-gradient(
+      to right,
+      #11aacb, #6CBF64
+    );
+  color:black;
+    margin-top: 815px;
+}
+
+.footer-clean h3 {
+  margin-top:0;
+  margin-bottom:12px;
+  font-weight:bold;
+    font-size: 18px;
+    margin-left: 22px;
+}
+
+.footer-clean ul {
+  padding:0;
+  list-style:none;
+  line-height:1.6;
+  font-size:20px;
+  margin-bottom:0;
+}
+
+.footer-clean ul a {
+  color:inherit;
+  text-decoration:none;
+  opacity:0.8;
+
+}
+.footer-clean ul li {
+    padding:0.5rem 0;
+
+}
+
+.footer-clean ul a:hover {
+  opacity:1;
+}
+
+.footer-clean .item.social {
+  text-align:right;
+}
+
+@media (max-width:767px) {
+  .footer-clean .item {
+    text-align:center;
+    padding-bottom:20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-clean .item.social {
+    text-align:center;
+  }
+}
+
+.footer-clean .item.social > a {
+  font-size:24px;
+  width:40px;
+  height:40px;
+  line-height:40px;
+  display:inline-block;
+  text-align:center;
+  border-radius:50%;
+  border:1px solid #ccc;
+  margin-left:10px;
+  margin-top:22px;
+  color:inherit;
+  opacity:0.75;
+}
+
+.footer-clean .item.social > a:hover {
+  opacity:0.9;
+}
+
+@media (max-width:991px) {
+  .footer-clean .item.social > a {
+    margin-top:40px;
+  }
+}
+
+@media (max-width:767px) {
+  .footer-clean .item.social > a {
+    margin-top:10px;
+  }
+}
+
+.footer-clean .copyright {
+    margin-top: 14px;
+    margin-bottom: 0;
+    font-size: 13px;
+    opacity: 0.6;
+    text-align: center;
+    margin-left: 75px;
+}
+
+
+
+
+
+
+
+
+
+
+</style>
+<body>
+<div class="container">
+    <img style="    margin-left: -80px;" src="/media/back_of_rec.PNG" alt="Flowers in Chania" height="475px" width="1270px">
+</div>
+<div class="container1">
+    <h1 id="head1"><span class="fas fa-id-card"></span>&nbsp;&nbsp;Hey {{user.username}}, your personality is <span style="font-size:17.5px;padding:5px 10px;background-color:#F95C39;border-radius:5px;color:white;">{{combo}}</span></h1>
+    <p id="head">Your personality characteristics are:</p>
+    <div class="container2">
+        <table>
+            <!-- #####LOGIC######-->
+            {% for item in order %}
+
+            {% if item == 'R' %}
+            <a href="#" class="tooltip-right" data-tooltip="I’m the tooltip text.">
+                <tr title="row 1">
+
+                    <td>Realistic</td>
+                    <td>{{rper}}</td>
+                    <td>
+                        <span class="spnDetails">
+                        <progress id="bar" value="{{rper}}" max="100"></progress>
+                        </span>
+                        {% for i in rdes %}
+                        <span class="spnTooltip"><strong>{{i.personality_des}}</strong>
+                        </span>
+                        {% endfor %}
+                    </td>
+
+
+                </tr>
+            </a>
+            {% elif item == 'I' %}
+            <tr title="row 2">
+                <td>Investigative</td>
+                <td>{{iper}}</td>
+                <td><span class="spnDetails">
+                        <progress id="bar" value="{{iper}}" max="100"></progress>
+                        </span>
+                    {% for i in ides %}
+                    <span class="spnTooltip"><strong>{{i.personality_des}}</strong>
+                        </span>
+                    {% endfor %}
+                </td>
+
+            </tr>
+            {% elif item == 'A' %}
+            <tr title="row 3">
+                <td>Artistic</td>
+                <td>{{aper}}</td>
+
+                <td>
+                <span class="spnDetails">
+                        <progress id="bar" value="{{aper}}" max="100"></progress>
+                        </span>
+                    {% for i in ades %}
+                    <span class="spnTooltip"><strong>{{i.personality_des}}</strong>
+                        </span>
+                    {% endfor %}
+                </td>
+            </tr>
+            {% elif item == 'S' %}
+            <tr title="row 4">
+                <td>Social</td>
+                <td>{{sper}}</td>
+                <td>
+                    <span class="spnDetails">
+                        <progress id="bar" value="{{sper}}" max="100"></progress>
+                        </span>
+                    {% for i in sdes %}
+                    <span class="spnTooltip"><strong>{{i.personality_des}}</strong>
+                        </span>
+                    {% endfor %}
+
+                </td>
+            </tr>
+            {% elif item == 'E' %}
+            <tr title="row 5">
+                <td>Enterprising</td>
+                <td>{{eper}}</td>
+                <td>
+                <span class="spnDetails">
+                        <progress id="bar" value="{{eper}}" max="100"></progress>
+                        </span>
+                    {% for i in edes %}
+                    <span class="spnTooltip"><strong>{{i.personality_des}}</strong>
+                        </span>
+                    {% endfor %}
+                </td>
+
+            </tr>
+            {% elif item == 'C' %}
+            <tr title="row 6">
+                <td>Conventional</td>
+                <td>{{cper}}</td>
+                <td>
+                      <span class="spnDetails">
+                        <progress id="bar" value="{{cper}}" max="100"></progress>
+                        </span>
+                    {% for i in cdes %}
+                    <span class="spnTooltip"><strong>{{i.personality_des}}</strong>
+                        </span>
+                    {% endfor %}
+
+                </td>
+
+            </tr>
+            {% else %}
+                {{continue}}
+            {% endif %}
+            {% endfor %}
+        </table>
+    </div>
+
+
+    <!--#####END OF LOGIC #####-->
+  <div class="container3">
+            <p id="head2">Based on your personality, we recommend studying</p>
+      <div style="display:flex;    margin-left: 25px;">
+    <img src="{{final1.career_cluster.clipart.url}}" alt="image" width="75" height="75">
+
+          <h2 id="head3">{{final1}}</h2></div>
+    {% for item in final1_des %}
+      <p id="head4">{{item.cluster_des|safe}}</p>
+    {% endfor %}
+
+    <button id="btn"><a href="{% url 'degree:search_deg' %}">Search available programs</a></button>
+    <button id="btn1"><a href="{% url 'ptest:cluster_info' final1.career_cluster.id %}">Read more</a></button>
+
+  </div>
+</div>
+<br>
+
+<div class="container4" style="padding-top:100px;">
+<h2 id="head5">Other disciplines that fit you</h2>
+<div class="container5" style="    padding-bottom: 50px;">
+     <div class="card1">
+    <a href="{% url 'ptest:cluster_info' final2.career_cluster.id %}">
+        <img id="con1" src="{{final2.career_cluster.clipart.url}}" alt="image" width="115" height="100"     style="margin-left:65px;">
+        <p id="con"  style="text-align:center;">{{final2}}</p>
+    </a>
+     </div>
+     <div class="card2">
+    <a href="{% url 'ptest:cluster_info' final3.career_cluster.id %}">
+        <img id="con1" src="{{final3.career_cluster.clipart.url}}" alt="image" width="115" height="100"     style="margin-left:65px;">
+        <p id="con" style="text-align:center;">{{final3}}</p>
+    </a>
+     </div>
+         <div class="card3">
+    <a href="{% url 'ptest:cluster_info' final4.career_cluster.id %}">
+        <img id="con1" src="{{final4.career_cluster.clipart.url}}" alt="image" width="115" height="100" style="margin-left:65px;">
+        <p id="con"  style="text-align:center;">{{final4}}</p>
+    </a>
+         </div>
+</div>
+</div>
+
+
+<div class="footer-clean">
+    <footer>
+        <div class="container10">
+            <div class="row">
+                <div class="col-sm-4 col-md-2 item">
+                    <h3>Services</h3>
+                    <ul >
+                        <li><a href="#">Web design</a></li>
+                        <li><a href="#">Development</a></li>
+                        <li><a href="#">Hosting</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 col-md-2 item">
+                    <h3>About</h3>
+                    <ul>
+                        <li><a href="#">Company</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Legacy</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 col-md-3 item">
+                    <h3>Careers</h3>
+                    <ul>
+                        <li><a href="#">Job openings</a></li>
+                        <li><a href="#">Employee success</a></li>
+                        <li><a href="#">Benefits</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i
+                        class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a
+                        href="#"><i class="icon ion-social-instagram"></i></a>
+                    <p class="copyright">Company Name © 2018</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+</body>
+</html>
+{% endblock %}

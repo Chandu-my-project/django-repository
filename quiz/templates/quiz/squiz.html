@@ -1,0 +1,273 @@
+{% extends 'sentiment/base.html' %}
+{% block title %}Start Quiz{% endblock %}
+{% block body %}
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<style>
+
+      @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+html,body{
+ /* display: grid;*/
+ display: inline;
+  height: 100%;
+  place-items: center;
+  text-align: center;
+  background: #f2f2f2;
+}
+/*-----navbar-----*/
+/* Navigation */
+
+/*-------- cards -------------*/
+.slider{
+  max-width: 1100px;
+  display: flex;
+  margin-top:80px;
+  margin-left:130px;
+}
+.slider .card{
+  flex: 1;
+  margin: 0 10px;
+  background: #fff;
+}
+.slider .card .img{
+  height: 200px;
+  width: 100%;
+}
+.slider .card .img img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.slider .card .content{
+  padding: 10px 20px;
+}
+.card .content .title{
+  font-size: 25px;
+  font-weight: 600;
+}
+.card .content .sub-title{
+  font-size: 20px;
+  font-weight: 600;
+  color: #e74c3c;
+  line-height: 20px;
+}
+.card .content p{
+  text-align: justify;
+  margin: 10px 0;
+}
+.card .content .btn{
+  display: block;
+  text-align: left;
+  margin: 10px 0;
+}
+.card .content .btn button{
+  background: #AA0172;
+
+  color: #fff;
+  border: none;
+  outline: none;
+  font-size: 17px;
+  padding: 5px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.card .content .btn button:hover{
+  transform: scale(0.9);
+}
+/*-----------button ---------*/
+#stq
+{
+/*
+   background-image: linear-gradient(to bottom,  #008000,#008000);
+     box-shadow: 0 5px 15px 0px rgb(211 211 211 / 40%);*/
+     background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+    margin-top: 25px;
+  margin-bottom: 10px;
+  font-weight:bold;
+
+}
+#stq:hover
+{
+  background-color:#006400;
+}
+.enrich-knowledge
+{
+  background-image:
+    linear-gradient(
+      to right,
+      #BE0E8C ,
+      #8752A3,
+      rgb(85,142,182) ,
+   rgb(27,213,204)
+    );
+    color:#fff;
+        margin-top: 30px;
+  }
+
+.slider {
+    max-width: 1100px;
+    display: flex;
+    margin-top: 80px;
+    margin-left: 85px;
+}
+
+
+</style>
+{% load static %}
+
+<body>
+<!--<div id="wrap">-->
+
+<!--    <div class="content-container pt-60">-->
+<!--        <div id="quiz-start">-->
+<!--            <main><h1>Test your knowledge</h1>-->
+<!--                <div class="col d-flex justify-content-center">-->
+<!--                    <div class="container-fluid " style="text-al">-->
+<!--                        <div class="row">-->
+<!--                            <div class="col-sm">-->
+<!--                                <div class="card-css" style="width:260px;height:405px;">-->
+<!--                                    <img class="card-img-top" alt="A view of the sea"-->
+<!--                                         src="{% static 'quiz/images/pic1.png' %}" width="304" height="225">-->
+
+<!--                                    <div class="card-body">-->
+<!--                                        <h3>Start Quiz </h3>-->
+<!--                                        <p>Test your knowledge with W3docs’ basic quiz made especially for beginners in-->
+<!--                                            Sass.-->
+<!--                                            Pass-->
+<!--                                            the test and get a <strong>Certificate</strong> of achievement! </p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+
+<!--                            <div class="col-sm">-->
+<!--                                <div class="card-css" style="width:260px;height:405px;">-->
+<!--                                    <img class="card-img-top" alt="A view of the sea"-->
+<!--                                         src="{% static 'quiz/images/pic2.png' %}" width="304" height="225">-->
+
+<!--                                    <div class="card-body">-->
+<!--                                        <h3>The Test</h3>-->
+<!--                                        <p>The test contains 20 questions and there is no time limit. The test is not-->
+<!--                                            official, it's-->
+<!--                                            just a nice way to see how much you know about Sass. </p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="col-sm">-->
+<!--                                <div class="card-css" style="width:260px;height:405px;">-->
+<!--                                    <img class="card-img-top" alt="A view of the sea"-->
+<!--                                         src="{% static 'quiz/images/pic3.png' %}" width="304" height="225">-->
+
+<!--                                    <div class="card-body">-->
+<!--                                        <h3>Count Your Score</h3>-->
+<!--                                        <p>You will get 5% for each correct answer. At the end of the Quiz, your total-->
+<!--                                            score-->
+<!--                                            will be-->
+<!--                                            displayed out of 100% maximum score. </p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+<!--                            </div>-->
+<!--                        </div>-->
+
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </main>-->
+<!--<div class="btn-container"><a class="btn btn-green btn-lg" href="{% url 'quiz:quiz' %}">Start Quiz</a></div>-->
+<!--<center>-->
+<!--    <div class="enrich-knowledge"><h3> Enrich your knowledge </h3>-->
+<!--        <p>At the end of the quiz you can see all the questions with the right answers. There will also be-->
+<!--            notes about the answers which will lead you to the appropriate page on the platform to enrich-->
+<!--            your knowledge. Read our HTML tutorial if you are not sure that you are ready for the quiz.</p>-->
+<!--    </div>-->
+<!--</center>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+    <div class="slider owl-carousel">
+      <div class="card">
+        <div class="img"><img src="{% static 'quiz/images/pro2.jpg' %}" alt=""></div>
+        <div class="content">
+          <div class="title">Start Quiz</div>
+         <!--  <div class="sub-title">Graphic Designer</div> -->
+          <p>Test your knowledge with W3docs’ basic quiz made especially for beginners in
+                                            Sass.
+                                            Pass
+                                            the test and get a <strong>Certificate</strong> of achievement!</p>
+          <div class="btn">
+            <button>Read more</button>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="img"><img src="{% static 'quiz/images/pro1.jpg' %}" alt=""></div>
+        <div class="content">
+          <div class="title">The Test</div>
+          <!-- <div class="sub-title">Web Developer</div> -->
+          <p>The test contains 20 questions and there is no time limit. The test is not
+                                            official, it's
+                                            just a nice way to see how much you know about Sass. </p>
+          <div class="btn">
+            <button>Read more</button>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="    padding-bottom: 22px;">
+        <div class="img"><img src="{% static 'quiz/images/pro3.jpg' %}" alt=""></div>
+        <div class="content">
+          <div class="title">Count Your Score</div>
+         <!--  <div class="sub-title">App Developer</div> -->
+          <p>You will get 5% for each correct answer. At the end of the Quiz, your total
+                                            score
+                                            will be
+                                            displayed out of 100% maximum score.</p>
+          <div class="btn">
+            <button>Read more</button>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- start button -->
+    <!-- <div class="btn-container"><a class="btn btn-green btn-lg" href="/quiz/">Start Quiz</a></div> -->
+    <div class="start-quiz">
+ <a id="sq"href="{% url 'quiz:quiz' %}"><button id="stq">START QUIZ</button></a>
+</div>
+
+<div class="enrich-knowledge"><h3 style="margin-bottom:10px;color:#fff"> Enrich your knowledge </h3>
+        <p >At the end of the quiz you can see all the questions with the right answers. There will also be
+            notes about the answers which will lead you to the appropriate page on the platform to enrich
+            your knowledge. Read our HTML tutorial if you are not sure that you are ready for the quiz.</p>
+    </div>
+
+
+    <script>
+      $(".slider").owlCarousel({
+        loop: true,
+        autoplay: true,
+        autoplayTimeout: 1500, //1500ms = 1s;
+
+        autoplayHoverPause: true,
+      });
+    </script>
+
+
+
+
+</body>
+
+{% endblock %}

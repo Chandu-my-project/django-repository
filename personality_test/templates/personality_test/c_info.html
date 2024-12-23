@@ -1,0 +1,268 @@
+{% extends 'sentiment/base.html' %}
+{% block title %}Details of {{cf}}{% endblock %}
+{% block body %}
+<style>
+body{
+background-color:#F2F5F7;
+}
+            .footer-clean {
+  padding:35px 0px;
+  background-color:#fff;
+  color:#4b4c4d;
+  max-width: 1200px;
+    margin-left: 40px;
+        margin-top: 45px;
+
+}
+h1{
+    margin-top: -5px;
+}
+.footer-clean h3 {
+  margin-top:0;
+  margin-bottom:12px;
+  font-weight:bold;
+  font-size:16px;
+   color:black;
+}
+
+.footer-clean ul {
+  padding:0;
+  list-style:none;
+  line-height:1.6;
+  font-size:17px;
+  margin-bottom:0;
+  color:black;
+
+}
+@media (max-width:767px) {
+  .footer-clean .item {
+    text-align:center;
+    padding-bottom:20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-clean .item.social {
+    text-align:center;
+  }
+}
+fg1{
+
+    margin-bottom: 12px;
+  font-weight: 550;
+    font-size: 1.05rem;
+    color: black;
+    padding-top:30px;
+    }
+
+
+<!--###FOOTER-->
+
+   .footer-clean1 {
+  padding: 20px 0;
+  /background-color:red;/
+  background-color: #11aacb;
+  background-image:
+    linear-gradient(
+      to right,
+      #11aacb, #6CBF64
+    );
+  color:black;
+      margin-top: 35px;
+      font-weight:lighter;
+
+}
+.container1{
+  padding: 20px 0;
+  /background-color:red;/
+  background-color: #11aacb;
+  background-image:
+    linear-gradient(
+      to right,
+      #11aacb, #6CBF64
+    );
+  color:black;
+      margin-top: 50px;
+          max-width: 100%;
+          padding-left:40px;
+}
+.footer-clean1 h3 {
+  margin-top:0;
+  margin-bottom:12px;
+  font-weight:bold;
+    font-size: 18px;
+    margin-left: 22px;
+}
+
+.footer-clean1 ul {
+  padding:0;
+  list-style:none;
+  line-height:1.6;
+  font-size:20px;
+  margin-bottom:0;
+  font-weight:lighter;
+}
+
+.footer-clean1 ul a {
+  color:inherit;
+  text-decoration:none;
+  opacity:0.8;
+font-weight: 400;
+
+}
+.footer-clean1 ul li {
+    padding:0.5rem 0;
+font-weight:lighter;
+}
+
+.footer-clean1 ul a:hover {
+  opacity:1;
+}
+
+.footer-clean1 .item.social {
+  text-align:right;
+}
+
+@media (max-width:767px) {
+  .footer-clean1 .item {
+    text-align:center;
+    padding-bottom:20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-clean1 .item.social {
+    text-align:center;
+  }
+}
+
+.footer-clean1 .item.social > a {
+  font-size:24px;
+  width:40px;
+  height:40px;
+  line-height:40px;
+  display:inline-block;
+  text-align:center;
+  border-radius:50%;
+  border:1px solid #ccc;
+  margin-left:10px;
+  margin-top:22px;
+  color:inherit;
+  opacity:0.75;
+}
+
+.footer-clean1 .item.social > a:hover {
+  opacity:0.9;
+}
+
+@media (max-width:991px) {
+  .footer-clean1 .item.social > a {
+    margin-top:40px;
+  }
+}
+
+@media (max-width:767px) {
+  .footer-clean1 .item.social > a {
+    margin-top:10px;
+  }
+}
+
+.footer-clean1 .copyright {
+    margin-top: 14px;
+    margin-bottom: 0;
+    font-size: 13px;
+    opacity: 0.6;
+    text-align: center;
+    margin-left: 75px;
+}
+p{
+    text-align: justify;
+}
+
+</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div class="backdrop fire" style="background-color:white;padding:30px 30px;max-width: 1200px;margin-left:40px;">
+        <center style="margin-top:-35px;margin-bottom:-5px;">
+
+    <img src="{{ cf.clipart.url }}" alt="Card image" width="110" height="110">
+    <h1 class="text fire inverse">{{cf}}</h1>
+    <div class="overlay fire inverse"></div>
+
+    </center>
+</div>
+<div>
+
+</div>
+<br>
+<div style="padding:30px 30px; max-width: 1200px;background-color:white;margin-left:40px;font-size:16.5px;"
+     class="para">
+    <p>{{cf.cluster_des|safe}}</p>
+</div>
+
+<div class="footer-clean">
+    <footer>
+        <div class="container">
+            <h3 class="fg1">Majors to study for {{cf}}</h3>
+            <div class="row">
+                {% for item in cm %}
+                <div class="col-sm-4 item">
+                    <ul>
+                        <li>
+                            {{item.major}}
+                        </li>
+                        <br>
+                    </ul>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </footer>
+</div>
+
+<div class="footer-clean1">
+    <footer>
+        <div class="container1">
+            <div class="row">
+                <div class="col-sm-4 col-md-2 item">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Web design</a></li>
+                        <li><a href="#">Development</a></li>
+                        <li><a href="#">Hosting</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 col-md-2 item">
+                    <h3>About</h3>
+                    <ul>
+                        <li><a href="#">Company</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Legacy</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 col-md-3 item">
+                    <h3>Careers</h3>
+                    <ul>
+                        <li><a href="#">Job openings</a></li>
+                        <li><a href="#">Employee success</a></li>
+                        <li><a href="#">Benefits</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i
+                        class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a
+                        href="#"><i class="icon ion-social-instagram"></i></a>
+                    <p class="copyright">Company Name © 2018</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+
+</body>
+</html>
+{% endblock %}

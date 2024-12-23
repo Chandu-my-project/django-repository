@@ -1,0 +1,189 @@
+{% extends 'sentiment/base.html' %}
+{% block title %}Degree Institutions{% endblock %}
+{% block body %}
+
+<style>
+    .card:hover{
+     transform: scale(1);
+  box-shadow: 0 10px 10px rgba(0,0,0,.1), 0 4px 8px rgba(0,0,0,.1);
+}
+.col-sm-4 {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-top: 45px;
+}
+.footer-clean h3 {
+  margin-top:0;
+  margin-bottom:12px;
+  font-weight:bold;
+    font-size: 18px;
+    margin-left: 22px;
+}
+  .footer-clean {
+  padding: 20px 0;
+  /background-color:red;/
+  background-color: #11aacb;
+  background-image:
+    linear-gradient(
+      to right,
+      #11aacb, #6CBF64
+    );
+  color:black;
+      margin-top: 35px;
+}
+.footer-clean ul {
+  padding:0;
+  list-style:none;
+  line-height:1.6;
+  font-size:20px;
+  margin-bottom:0;
+}
+
+.footer-clean ul a {
+  color:inherit;
+  text-decoration:none;
+  opacity:0.8;
+
+}
+.footer-clean ul li {
+    padding:0.5rem 0;
+
+}
+
+.footer-clean ul a:hover {
+  opacity:1;
+}
+
+.footer-clean .item.social {
+  text-align:right;
+}
+
+@media (max-width:767px) {
+  .footer-clean .item {
+    text-align:center;
+    padding-bottom:20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-clean .item.social {
+    text-align:center;
+  }
+}
+
+.footer-clean .item.social > a {
+  font-size:24px;
+  width:40px;
+  height:40px;
+  line-height:40px;
+  display:inline-block;
+  text-align:center;
+  border-radius:50%;
+  border:1px solid #ccc;
+  margin-left:10px;
+  margin-top:22px;
+  color:inherit;
+  opacity:0.75;
+}
+
+.footer-clean .item.social > a:hover {
+  opacity:0.9;
+}
+
+@media (max-width:991px) {
+  .footer-clean .item.social > a {
+    margin-top:40px;
+  }
+}
+
+@media (max-width:767px) {
+  .footer-clean .item.social > a {
+    margin-top:10px;
+  }
+}
+
+.footer-clean .copyright {
+    margin-top: 14px;
+    margin-bottom: 0;
+    font-size: 13px;
+    opacity: 0.6;
+    text-align: center;
+    margin-left: 75px;
+}
+</style>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+<!--            <h3></h3>-->
+        </div>
+        {% if all_institute %}
+
+
+        <!-- Python code will be inside this -->
+        {% for institute in all_institute %}
+        <div class="col-sm-4 col-lg-3 top">
+            <div class="card" style="width:300px;height:405px;">
+                <a href="{% url 'sentiment:detail' institute.id %}">
+                    <img class="card-img-top" src="{{ institute.picture.url }}" alt="Card image" width="304" height="236" >
+                </a>
+                <div class="card-body">
+                    <h4 class="card-title">{{ institute.iname }}&nbsp;<span style="font-size:15px;">({{ institute.location }} )</span></h4>
+                    <p class="card-text">Founded by {{ institute.founder }}</p>
+                    <!-- View Details -->
+<!--                    <a href="{% url 'sentiment:detail' institute.id %}" class="btn btn-primary"-->
+<!--                       role="button">View degree programs</a>-->
+                    <!-- This the variable of institute example :institute.attribute_name  -->
+                    <!--        non hardcode url-->
+
+                </div>
+            </div>
+        </div>
+
+    {% endfor %}
+
+</div>
+</div>
+{% else %}
+<h1>No Institutes</h1>
+{% endif %}
+<div class="footer-clean">
+    <footer>
+        <div class="container con1">
+            <div class="row">
+                <div class="col-sm-4 col-md-2 item">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Web design</a></li>
+                        <li><a href="#">Development</a></li>
+                        <li><a href="#">Hosting</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 col-md-2 item">
+                    <h3>About</h3>
+                    <ul>
+                        <li><a href="#">Company</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Legacy</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 col-md-3 item">
+                    <h3>Careers</h3>
+                    <ul>
+                        <li><a href="#">Job openings</a></li>
+                        <li><a href="#">Employee success</a></li>
+                        <li><a href="#">Benefits</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i
+                        class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a
+                        href="#"><i class="icon ion-social-instagram"></i></a>
+                    <p class="copyright">Company Name © 2018</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+{% endblock %}

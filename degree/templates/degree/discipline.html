@@ -1,0 +1,287 @@
+{% extends 'sentiment/base.html' %}
+{% block title %}Browse degree by Discipline{% endblock %}
+{% block body %}
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Browse degree by Discipline</title>
+    <style>
+
+
+	<!-- top -->
+	<div class="top">
+<img src="images/BPHeroStudent.jpg" alt="man" style="margin-top:30px;">
+<h1 class="text1">NEVER STOP LEARNING</h1>
+    <p   class="text2" >Discover thousands of Bachelor's degrees worldwide!</p>
+</div>
+
+
+
+
+	<!-- cards -->
+	<h1 id="heading">
+		Browse by Discipline
+	</h1>
+
+    html { font-size: 22px; }
+
+     .cards {
+         max-width: 1100px;
+         margin: 0 auto;
+         display: grid;
+         grid-gap: 0.5rem;
+          align-items:center;
+        }
+        .card {
+  background-color:#EDF3F6;
+  color: black;
+  padding: 1rem;
+      height: 11rem;
+
+}
+ .card:hover
+ {
+ 	background-color: #247BA0;
+ 	text-decoration:none;
+ }
+
+ .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 45%;
+}
+
+/* Screen larger than 600px? 2 column */
+@media (min-width: 600px) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Screen larger than 900px? 3 columns */
+@media (min-width: 900px) {
+  .cards { grid-template-columns: repeat(4, 1fr); }
+}
+
+.text1 {
+    position: absolute;
+    top: 150px;
+    color: #fff;
+    left: 30px;
+    color: white;
+    padding: 2rem 1px;
+    /* font-weight: bold; */
+    /* font-size: 200%; */
+    font-size: 2rem;
+    line-height: 4rem;
+    font-weight: bold;
+}
+
+.text2 {
+    position: absolute;
+    top: 195px;
+    left: 30px;
+    color: #fff;
+    padding: 2.5rem 1px;
+    font-size: 1.3rem;
+    /* font-weight: bold; */
+    /* text-shadow: 1px 1px 1px #000; */
+}
+#link
+{
+	 text-decoration:none;
+	 color:black;
+}
+
+#heading
+{
+
+        font-family: Arial, Helvetica, sans-serif;
+    font-size: 2.25rem;
+    line-height: 3rem;
+    font-weight: 600;
+    margin: 1rem 0;
+    padding-left: 65px;
+}
+
+   .footer-clean {
+  padding: 20px 0;
+  /background-color:red;/
+  background-color: #11aacb;
+  background-image:
+    linear-gradient(
+      to right,
+      #11aacb, #6CBF64
+    );
+  color:black;
+      margin-top: 35px;
+}
+
+.footer-clean h3 {
+  margin-top:0;
+  margin-bottom:12px;
+  font-weight:bold;
+    font-size: 18px;
+    margin-left: 22px;
+}
+
+.footer-clean ul {
+  padding:0;
+  list-style:none;
+  line-height:1.6;
+  font-size:20px;
+  margin-bottom:0;
+}
+
+.footer-clean ul a {
+  color:inherit;
+  text-decoration:none;
+  opacity:0.8;
+
+}
+.footer-clean ul li {
+    padding:0.5rem 0;
+
+}
+
+.footer-clean ul a:hover {
+  opacity:1;
+}
+
+.footer-clean .item.social {
+  text-align:right;
+}
+
+@media (max-width:767px) {
+  .footer-clean .item {
+    text-align:center;
+    padding-bottom:20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-clean .item.social {
+    text-align:center;
+
+  }
+}
+
+.footer-clean .item.social > a {
+  font-size:24px;
+  width:40px;
+  height:40px;
+  line-height:40px;
+  display:inline-block;
+  text-align:center;
+  border-radius:50%;
+  border:1px solid #ccc;
+  margin-left:10px;
+  margin-top:40px;
+  color:inherit;
+  opacity:0.75;
+}
+
+.footer-clean .item.social > a:hover {
+  opacity:0.9;
+}
+
+@media (max-width:991px) {
+  .footer-clean .item.social > a {
+    margin-top:40px;
+  }
+}
+
+@media (max-width:767px) {
+  .footer-clean .item.social > a {
+    margin-top:10px;
+  }
+}
+
+.footer-clean .copyright {
+    margin-top: 14px;
+    margin-bottom: 0;
+    font-size: 13px;
+    opacity: 0.6;
+    text-align: center;
+    margin-left: 75px;
+}
+nav ul li a{
+color:white;
+font-weight:500;
+}
+    </style>
+</head>
+<body>
+<!-- top -->
+<div class="top">
+    <img src="/media/hero.jpg" alt="man" style="    margin-top: 0px;">
+    <h1 class="text1">EXPLORE ALL YOUR OPPORTUNITIES</h1>
+    <p class="text2">Discover thousands of Bachelor's degrees worldwide!</p>
+</div>
+
+
+<!-- cards -->
+<h1 id="heading">
+    Browse by Discipline
+</h1>
+{% if dis %}
+<div class="cards">
+    {% for item in dis %}
+
+    <div class="card">
+        <a href="{% url 'degree:info' item.id %}" id="link">
+            <img class="center" src="{{ item.clipart.url }}" alt="Card image" width="100" height="100">
+            <p style="text-align:center;font-family: Arial, Helvetica, sans-serif;font-weight: 600;">{{item.dname}}</p>
+        </a>
+    </div>
+
+    {% endfor %}
+</div>
+{% else %}
+<h1>No disciplines found!!</h1>
+{% endif %}
+
+<div class="footer-clean">
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 col-md-2 item">
+                    <h3>Services</h3>
+                    <ul >
+                        <li><a href="#">Web design</a></li>
+                        <li><a href="#">Development</a></li>
+                        <li><a href="#">Hosting</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 col-md-2 item">
+                    <h3>About</h3>
+                    <ul>
+                        <li><a href="#">Company</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Legacy</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 col-md-3 item">
+                    <h3>Careers</h3>
+                    <ul>
+                        <li><a href="#">Job openings</a></li>
+                        <li><a href="#">Employee success</a></li>
+                        <li><a href="#">Benefits</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 item social"><a href="#" style="margin-top:5px;"><i class="icon ion-social-facebook"></i></a><a href="#"><i
+                        class="icon ion-social-twitter"></i></a><a href="#" style="margin-top:5px;"><i class="icon ion-social-snapchat"></i></a><a
+                        href="#" style="margin-top:5px;"><i class="icon ion-social-instagram"></i></a>
+                    <p class="copyright">Company Name © 2018</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+</body>
+
+
+</html>
+{% endblock %}

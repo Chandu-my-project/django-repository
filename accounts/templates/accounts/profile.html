@@ -1,0 +1,318 @@
+{% extends 'sentiment/base.html' %}
+{% block title %}My account{% endblock %}
+{% block body %}
+{% load static %}
+
+<style>
+.btn
+{
+   background-color: #B5007A; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size:25px;
+  font-weight:500;
+
+}
+.btn:hover{
+color:white;
+opacity:0.8;
+}
+a:hover{
+text-decoration:none;
+
+}
+
+.btn1
+{
+   background-color: #B5007A; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size:25px;
+  font-weight:500;
+  margin-left:30px;
+    border-radius:5px;
+}
+
+.btn1:hover{
+color:white;
+opacity:0.8;
+text-decoration: none;
+}
+.errorlist
+{
+ color:red;
+ background-color:white;
+ font-size:15px;
+}
+ optgroup, select{
+display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+
+
+}
+#id_grad_year
+{
+display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+
+
+}
+button{
+margin-top:15px;
+}
+#id_password
+{
+display:none;
+}
+.helptext
+{
+margin-top:10px;
+}
+.lab{
+padding:5px 5px;
+}
+label{
+font-size:15px;
+}
+.footer-clean h3 {
+  margin-top:0;
+  margin-bottom:12px;
+  font-weight:bold;
+    font-size: 18px;
+    margin-left: 22px;
+}
+  .footer-clean {
+  padding: 20px 0;
+  /background-color:red;/
+  background-color: #11aacb;
+  background-image:
+    linear-gradient(
+      to right,
+      #11aacb, #6CBF64
+    );
+  color:black;
+      margin-top: 35px;
+}
+.footer-clean ul {
+  padding:0;
+  list-style:none;
+  line-height:1.6;
+  font-size:20px;
+  margin-bottom:0;
+}
+
+.footer-clean ul a {
+  color:inherit;
+  text-decoration:none;
+  opacity:0.8;
+
+}
+.footer-clean ul li {
+    padding:0.5rem 0;
+
+}
+
+.footer-clean ul a:hover {
+  opacity:1;
+}
+
+.footer-clean .item.social {
+  text-align:right;
+}
+
+@media (max-width:767px) {
+  .footer-clean .item {
+    text-align:center;
+    padding-bottom:20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-clean .item.social {
+    text-align:center;
+  }
+}
+
+.footer-clean .item.social > a {
+  font-size:24px;
+  width:40px;
+  height:40px;
+  line-height:40px;
+  display:inline-block;
+  text-align:center;
+  border-radius:50%;
+  border:1px solid #ccc;
+  margin-left:10px;
+  margin-top:22px;
+  color:inherit;
+  opacity:0.75;
+}
+
+.footer-clean .item.social > a:hover {
+  opacity:0.9;
+}
+
+@media (max-width:991px) {
+  .footer-clean .item.social > a {
+    margin-top:40px;
+  }
+}
+
+@media (max-width:767px) {
+  .footer-clean .item.social > a {
+    margin-top:10px;
+  }
+}
+
+.footer-clean .copyright {
+    margin-top: 14px;
+    margin-bottom: 0;
+    font-size: 13px;
+    opacity: 0.6;
+    text-align: center;
+    margin-left: 75px;
+}
+
+
+</style>
+<script>
+        setTimeout(function(){
+    if($('#msg').length>0){
+    $('#msg').remove();
+    }
+    },2000)
+
+
+</script>
+
+<div class="container1" style="margin-left:0px;text-align: center;color: white;">
+    <div class="image">
+        <img src="{% static 'quiz/images/img.jpg' %}" alt="Italian Trulli" style="margin-top: -60px;margin-right:1px;width:100%; overflow: hidden;height:300px;
+  color:blue;opacity:0.7;">
+        <div class="text-block">
+            <h1 class="bn-text1" style="position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);font-size: 3.8rem;color: #fff;text-transform: uppercase;font-weight: 900;">MY
+                ACCOUNT</h1>
+            <!--    <p  class="bn-text2"  style="position:absolute;bottom:230px;left:450px;font-size: 130%; ">Tell us what you're looking for and get matched to college that are prefect for</p>-->
+        </div>
+    </div>
+</div>
+{% include 'search/messages.html' %}
+<br><br>
+
+
+<h1 style="margin-left:350px;width:50%;">Your Info.</h1>
+<hr style="height:1px;width:50%;text-align:left;margin-left:350px;background-color:orange;">
+
+
+<!--for form-->
+
+
+<div class="container-fluid" style="margin-left:350px;">
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="col-md-6" style="align:center;">
+            <div class="form-group" style="font-size:20px;black: #fff;font-weight:600;margin-left:-5px;">
+                {% for field in form %}
+
+                <div class="lab">
+                    <label>{{field.label}}</label>
+                    {{field}}
+                    <span class="errorlist"> {{field.errors|striptags}}</span>
+
+                </div>
+
+                {% endfor %}
+
+                <!--                <span style="margin-bottom:10px;" class="helptext">Change the password using <a-->
+                <!--                        href="../password/">this form</a>.</span></td></tr>-->
+                <br>
+
+                <div style="display:flex;margin-left:55px;">
+                    <button class="btn">Update Profile</button>
+                    <button class="btn1"><a style="color:white;"
+                               href="../password/">Change Password</a></button>
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+</div>
+<div class="footer-clean">
+    <footer>
+        <div class="container con1">
+            <div class="row">
+                <div class="col-sm-4 col-md-2 item">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Web design</a></li>
+                        <li><a href="#">Development</a></li>
+                        <li><a href="#">Hosting</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 col-md-2 item">
+                    <h3>About</h3>
+                    <ul>
+                        <li><a href="#">Company</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Legacy</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 col-md-3 item">
+                    <h3>Careers</h3>
+                    <ul>
+                        <li><a href="#">Job openings</a></li>
+                        <li><a href="#">Employee success</a></li>
+                        <li><a href="#">Benefits</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i
+                        class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a
+                        href="#"><i class="icon ion-social-instagram"></i></a>
+                    <p class="copyright">Company Name © 2018</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+

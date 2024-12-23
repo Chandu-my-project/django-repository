@@ -1,0 +1,514 @@
+{% extends 'sentiment/base.html' %}
+{% block title %}Student Feedbacks{% endblock %}
+{% block body %}
+{% load crispy_forms_tags %}
+
+<style>
+
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css);
+.checked {
+color: orange;
+}
+.unchecked{
+color:black;
+}
+
+.container1{
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: 250px;
+    margin-top:-5px;
+}
+
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+html,body{
+width: 100%;
+height: 100%;
+}
+
+body{
+font-family: Arial, sans-serif;
+}
+
+
+.rating-wrap{
+max-width: 480px;
+margin: auto;
+padding: 15px;
+box-shadow: 0 0 3px 0 rgba(0,0,0,.2);
+text-align: center;
+}
+
+.center{
+width: 162px;
+margin: auto;
+}
+
+
+#rating-value{
+width: 110px;
+margin: 40px auto 0;
+padding: 10px 5px;
+text-align: center;
+box-shadow: inset 0 0 2px 1px rgba(46,204,113,.2);
+}
+
+/styling star rating/
+.rating{
+border: none;
+float: left;
+}
+
+.rating > input{
+display: none;
+}
+
+.rating > label:before{
+content: '\f005';
+font-family: FontAwesome;
+margin: 5px;
+font-size: 1.5rem;
+display: inline-block;
+cursor: pointer;
+}
+
+.rating > .half:before{
+content: '\f089';
+position: absolute;
+cursor: pointer;
+}
+
+
+.rating > label{
+color: #ddd;
+float: right;
+cursor: pointer;
+
+}
+
+.rating > input:checked ~ label,
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label{
+color: #FDCC0D;
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label,
+.rating > input:checked ~ label:hover ~ label{
+color: #FDCC0D;
+}
+#review:hover
+{
+    border-style: groove;
+    border-color: #2EB1AB;
+}
+.text1
+{
+   position: absolute;
+  top: 150px;
+  color:#fff;
+  left: 250px;
+  color:white;
+padding: 2rem 1px;
+font-weight: bold;
+/*font-weight:1000px; */
+ font-size: 470%;
+}
+.text2
+{
+   position: absolute;
+  top: 230px;
+  left: 250px;
+  color:#fff;
+padding: 2rem 1px;
+ font-size: 3rem;
+    font-weight: 500;
+    text-shadow: 1px 1px 1px #000;
+}
+#type
+{
+	margin-top:100px;
+}
+#program-rate
+{
+   margin-left:100px;
+   margin: -50px auto 0 auto;
+   background: #fff;
+   padding-top: 2em;
+}
+#first-hr
+{
+	width:70%;
+	background-color:orange;
+	text-align:left;
+	margin-left:0;
+	height:1px;
+}
+#star-submit
+{
+	 border-style: groove;
+	 font-weight:bold;
+	 background-color:#269C9B;
+	 padding:5px 20px;
+	 margin-left:700px;
+}
+#second-hr
+{
+	width:70%;
+	background-color:orange;
+	text-align:left;
+	margin-left:0;
+	height:1px;
+}
+
+#second-hr
+{
+	width:100%;
+	background-color:orange;
+	text-align:left;
+	margin-left:0;
+	height:1px;
+}
+.stars{
+    font-size: 18px;
+    margin-top:5px;
+}
+.rev{
+  text-align: justify;
+  text-justify: inter-word;
+   font-family: Verdana, sans-serif;
+}
+.cover{
+margin-top:25px;
+}
+.footer-clean h3 {
+  margin-top:0;
+  margin-bottom:12px;
+  font-weight:bold;
+    font-size: 18px;
+    margin-left: 22px;
+}
+  .footer-clean {
+  padding: 20px 0;
+  /background-color:red;/
+  background-color: #11aacb;
+  background-image:
+    linear-gradient(
+      to right,
+      #11aacb, #6CBF64
+    );
+  color:black;
+      margin-top: 35px;
+}
+.footer-clean ul {
+  padding:0;
+  list-style:none;
+  line-height:1.6;
+  font-size:20px;
+  margin-bottom:0;
+}
+
+.footer-clean ul a {
+  color:inherit;
+  text-decoration:none;
+  opacity:0.8;
+
+}
+.footer-clean ul li {
+    padding:0.5rem 0;
+
+}
+
+.footer-clean ul a:hover {
+  opacity:1;
+}
+
+.footer-clean .item.social {
+  text-align:right;
+}
+
+@media (max-width:767px) {
+  .footer-clean .item {
+    text-align:center;
+    padding-bottom:20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-clean .item.social {
+    text-align:center;
+  }
+}
+
+.footer-clean .item.social > a {
+  font-size:24px;
+  width:40px;
+  height:40px;
+  line-height:40px;
+  display:inline-block;
+  text-align:center;
+  border-radius:50%;
+  border:1px solid #ccc;
+  margin-left:10px;
+  margin-top:22px;
+  color:inherit;
+  opacity:0.75;
+}
+
+.footer-clean .item.social > a:hover {
+  opacity:0.9;
+}
+
+@media (max-width:991px) {
+  .footer-clean .item.social > a {
+    margin-top:40px;
+  }
+}
+
+@media (max-width:767px) {
+  .footer-clean .item.social > a {
+    margin-top:10px;
+  }
+}
+
+.footer-clean .copyright {
+    margin-top: 14px;
+    margin-bottom: 0;
+    font-size: 13px;
+    opacity: 0.6;
+    text-align: center;
+    margin-left: 75px;
+}
+
+</style>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+     $(document).ready(function(){
+            $("input[type='radio']").click(function(){
+            var radioValue = $("input[name='rating']:checked").val();
+            $('#rating-value').val(radioValue);
+            });
+     });
+
+
+
+
+</script>
+<div class="cover">
+    <h2 style=" font-family: Verdana, sans-serif;text-align:center;margin-left:-100px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ comments.cname }}
+        &nbsp;
+        {% if comments.overall_rating == 1 %}
+        <i class="fas fa-star checked"></i>
+        <i class="fas fa-star unchecked"></i>
+        <i class="fas fa-star unchecked"></i>
+        <i class="fas fa-star unchecked"></i>
+        <i class="fas fa-star unchecked"></i>
+        {% elif comments.overall_rating == 2 %}
+        <i class="fas fa-star checked"></i>
+        <i class="fas fa-star checked"></i>
+        <i class="fas fa-star unchecked"></i>
+        <i class="fas fa-star unchecked"></i>
+        <i class="fas fa-star unchecked"></i>
+        {% elif comments.overall_rating == 3 %}
+        <i class="fas fa-star checked"></i>
+        <i class="fas fa-star checked"></i>
+        <i class="fas fa-star checked"></i>
+        <i class="fas fa-star unchecked"></i>
+        <i class="fas fa-star unchecked"></i>
+        {% elif comments.overall_rating == 4 %}
+        <i class="fas fa-star checked"></i>
+        <i class="fas fa-star checked"></i>
+        <i class="fas fa-star checked"></i>
+        <i class="fas fa-star checked"></i>
+        <i class="fas fa-star unchecked"></i>
+        {% elif comments.overall_rating == 5 %}
+        <i class="fas fa-star checked"></i>
+        <i class="fas fa-star checked"></i>
+        <i class="fas fa-star checked"></i>
+        <i class="fas fa-star checked"></i>
+        <i class="fas fa-star checked"></i>
+        {% elif comments.overall_rating == 0 %}
+        <i class="fas fa-star unchecked"></i>
+        <i class="fas fa-star unchecked"></i>
+        <i class="fas fa-star unchecked"></i>
+        <i class="fas fa-star unchecked"></i>
+        <i class="fas fa-star unchecked"></i>
+        {{continue}}
+        {% else %}
+        <i class="fas fa-star unchecked"></i>
+        <i class="fas fa-star unchecked"></i>
+        <i class="fas fa-star unchecked"></i>
+        <i class="fas fa-star unchecked"></i>
+        <i class="fas fa-star unchecked"></i>
+        {% endif %}
+    </h2>
+    <div class="container1">
+        <div class="row">
+
+            {% if comments.feedback_set.all %}
+            <div class="col-md-8 card mb-4  mt-3 " style="box-shadow:5px 5px 10px 10px #f2f2f2;">
+                <div class="card-body">
+                    <!-- comments -->
+                    <h2 style="    margin-bottom: -7.5px;      font-size: 30px;
+}">{{ count }} comments</h2>
+                    <hr id="second-hr"></hr>
+
+                    <!--For getting reviews-->
+
+                    {% for comment in comments.feedback_set.all %}
+                    <div class="comments" style="padding: 10px;">
+                        <p class="font-weight-bold" style="font-size:17.5px;font-weight:500;">{{ comment.pname }}</p>
+
+                        <p class="text-muted font-weight" style="color:#737373;font-size:15px;font-weight:500;">
+                            {{comment.sentiment}}</p>
+                        <p class="rev">{{ comment.review }}</p>
+                        {% if comment.tot_rating is 1 %}
+                        <p class="stars">
+                            <i class="fas fa-star checked"></i>
+                            <i class="fas fa-star unchecked"></i>
+                            <i class="fas fa-star unchecked"></i>
+                            <i class="fas fa-star unchecked"></i>
+                            <i class="fas fa-star unchecked"></i>
+                        </p><br>
+                        {% elif comment.tot_rating is 2 %}
+                        <p class="stars">
+                            <i class="fas fa-star checked"></i>
+                            <i class="fas fa-star checked"></i>
+                            <i class="fas fa-star unchecked"></i>
+                            <i class="fas fa-star unchecked"></i>
+                            <i class="fas fa-star unchecked"></i>
+                        </p><br>
+
+                        {% elif comment.tot_rating is 3 %}
+                        <p class="stars">
+                            <i class="fas fa-star checked"></i>
+                            <i class="fas fa-star checked"></i>
+                            <i class="fas fa-star checked"></i>
+                            <i class="fas fa-star unchecked"></i>
+                            <i class="fas fa-star unchecked"></i>
+                        </p><br>
+                        {% elif comment.tot_rating is 4 %}
+                        <p class="stars">
+                            <i class="fas fa-star checked"></i>
+                            <i class="fas fa-star checked"></i>
+                            <i class="fas fa-star checked"></i>
+                            <i class="fas fa-star checked"></i>
+                            <i class="fas fa-star unchecked"></i>
+                        </p><br>
+                        {% elif comment.tot_rating is 5 %}
+                        <p class="stars">
+                            <i class="fas fa-star checked"></i>
+                            <i class="fas fa-star checked"></i>
+                            <i class="fas fa-star checked"></i>
+                            <i class="fas fa-star checked"></i>
+                            <i class="fas fa-star checked"></i>
+                        </p><br>
+                        {% else %}
+                        <p class="stars">
+                            <i class="fas fa-star unchecked"></i>
+                            <i class="fas fa-star unchecked"></i>
+                            <i class="fas fa-star unchecked"></i>
+                            <i class="fas fa-star unchecked"></i>
+                            <i class="fas fa-star unchecked"></i>
+                        </p>
+                        {% endif %}
+
+                    </div>
+
+                    {% endfor %}
+                </div>
+            </div>
+            {% else %}
+            <div class="col-md-8 card mb-4  mt-3 left  top">
+                <div class="card-body">
+                    <h1>No Reviews yet</h1>
+                </div>
+            </div>
+            {% endif %}
+
+            <!--For posting reviews-->
+            <!--        <div class="col-md-8 card mb-4  mt-3  ">-->
+            <!--            <div class="card-body">-->
+            <!--                <h3>Write a Review</h3>-->
+            <!--                <form action="" method="post" style="margin-top: 1.3em;">-->
+            <!--                    {% csrf_token %}-->
+            <!--                    {{ form | crispy }}-->
+
+            <!--                    <div class="rating-wrap">-->
+            <!--                        <h1>Star rating</h1>-->
+            <!--                        <div class="center">-->
+            <!--                            <fieldset class="rating">-->
+            <!--                                <input type="radio" id="star5" name="rating" value="5"/><label for="star5"-->
+            <!--                                                                                               class="full"></label>-->
+            <!--                                <input type="radio" id="star4" name="rating" value="4"/><label for="star4"-->
+            <!--                                                                                               class="full"></label>-->
+            <!--                                <input type="radio" id="star3" name="rating" value="3"/><label for="star3"-->
+            <!--                                                                                               class="full"></label>-->
+            <!--                                <input type="radio" id="star2" name="rating" value="2"/><label for="star2"-->
+            <!--                                                                                               class="full"></label>-->
+            <!--                                <input type="radio" id="star1" name="rating" value="1"/><label for="star1"-->
+            <!--                                                                                               class="full"></label>-->
+
+            <!--                            </fieldset>-->
+            <!--                        </div>-->
+            <!--                        &lt;!&ndash;                    <h4 id="rating-value"></h4>&ndash;&gt;-->
+            <!--                        <input name="star" type="hidden" id="rating-value"></input>-->
+            <!--                    </div>-->
+
+            <!--                    <button type="submit" class="btn btn-primary  btn-lg">Submit</button>-->
+            <!--                </form>-->
+
+            <!--            </div>-->
+            <!--        </div>-->
+        </div>
+    </div>
+    <!--<script src="star-ratings.js"></script>-->
+
+</div>
+
+<div class="footer-clean">
+    <footer>
+        <div class="container con1">
+            <div class="row">
+                <div class="col-sm-4 col-md-2 item">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Web design</a></li>
+                        <li><a href="#">Development</a></li>
+                        <li><a href="#">Hosting</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 col-md-2 item">
+                    <h3>About</h3>
+                    <ul>
+                        <li><a href="#">Company</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Legacy</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 col-md-3 item">
+                    <h3>Careers</h3>
+                    <ul>
+                        <li><a href="#">Job openings</a></li>
+                        <li><a href="#">Employee success</a></li>
+                        <li><a href="#">Benefits</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i
+                        class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a
+                        href="#"><i class="icon ion-social-instagram"></i></a>
+                    <p class="copyright">Company Name © 2018</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+{% endblock %}

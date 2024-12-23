@@ -1,0 +1,346 @@
+{% extends 'sentiment/base.html' %}
+{% block title %}Search Institutions{% endblock %}
+{% block body %}
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<style>
+/*body{
+  line-height: 1.5;
+  padding:0;
+  margin:0;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  margin-left:500px;
+  overflow: hidden;
+  background-color: #11aacb;
+  background-image:
+    linear-gradient(
+      to right,
+      #11aacb, #6CBF64
+    );
+}
+
+li {
+  float:right;
+}
+
+
+li a {
+  display: block;
+  color: white;
+  text-align: right;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  hover:;
+}
+
+li a:hover {
+  color: black ;
+}
+*/
+body{
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+}
+nav ul li a{
+color:white;
+font-weight:500;
+}
+.image
+{
+  margin-top:60px;
+}
+.container {
+  position: relative;
+}
+
+.fa, .fas {
+    font-weight: 900;
+    margin-top: 5px;
+}
+
+.btn2:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+   background-color: #CE0085;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    padding: 5px 5px;
+    text-decoration: none;
+    margin-top: 30px;
+
+}
+.btn2:hover{
+background-color: #CE0085;
+opacity:0.85;
+text-decoration:none;
+border: black;
+
+}
+
+@media(max-width: 990px){
+  .card1{
+    margin: 20px;
+  }
+}
+.badge {
+    display: inline-block;
+    min-width: 15px;
+    width: 50px;
+    padding: 7px 7px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: #478AFF;
+    border-radius: 10px;
+    margin-bottom:10px;
+}
+.col-md-6{
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-bottom: 30px;
+}
+
+.btn1
+{
+  background-color: #0CA8D0;;
+  color:white;
+  font-size:20px;
+  text-align:center;
+  padding: 5px 5px;
+  text-decoration: none;
+  margin-top:30px;
+  margin-left: 10px;
+}
+.btn1:hover
+{
+  color:white;
+  text-decoration: none;
+
+}
+.btn2
+{
+    background-color: #CE0085;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    padding: 5px 5px;
+    text-decoration: none;
+    margin-top: 30px;
+
+}
+
+
+#id_Institute_name
+{
+
+background-image: linear-gradient( to right, #fff, #fff );
+    border-radius: 20px;
+    height: 100%;
+    color: black;
+    padding: 15px 10px;
+    /* padding-right: 40px; */
+    font-size: 14px;
+    min-height: 40px;
+    text-align: center;
+    width: 130px;
+            box-shadow: 2px 2px 2px #e6e6e6;
+        border: 1.5px solid #d9d9d9;
+        font-size:12px;
+        font-weight:800px;
+
+}
+.card-1{
+  margin : auto;
+
+  overflow : hidden;
+  border-radius : 0px;
+  background : #fffcfc;
+  margin-top:10px;
+  transition: all .2s;
+  box-shadow:5px 5px 15px rgba(0,0,0, .1);
+
+}
+#id_Institute_name:hover
+{
+   border: 2px solid rgb(12,168,208);
+   box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+   outline: none;
+}
+
+#id_State,#id_Degree_Course {
+    background: #f1f4f4;
+    background-image: linear-gradient( to right, #fff, #fff );
+    border-radius: 20px;
+    height: 100%;
+    color: black;
+    padding: 15px 15px;
+    /* padding-right: 40px; */
+    font-size: 12px;
+    min-height: 40px;
+    text-align: center;
+    width: 130px;
+    box-shadow: 2px 2px 2px #e6e6e6;
+    border: 1.5px solid #d9d9d9;
+    font-weight: 600;
+
+}
+#id_Total_Fees{
+    margin-top:20px;
+}
+#id_Total_Fees,#id_Ranked{
+ background: #f1f4f4;
+
+    background-image: linear-gradient( to right, #fff, #fff );
+    border-radius: 20px;
+    border: 0;
+    border: 0;
+    height: 100%;
+    color: black;
+    padding: 15px 15px;
+    /* padding-right: 40px; */
+    font-size: 12px;
+    min-height: 40px;
+    text-align: center;
+    width:130px;
+            box-shadow: 2px 2px 2px #e6e6e6;
+        border: 1.5px solid #d9d9d9;
+        font-weight:600;
+
+}
+    $gutter_0: .75rem;
+$gutter_1: 1.25rem;
+$gutter_2: 1.75rem;
+$bg-color: white;
+
+.card{
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border-radius: .25rem;
+    margin-left: 50px;
+
+}
+
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+    margin-left: 3.5px;
+}
+.side_by_side
+{
+ display: flex;
+
+}
+.side_by_side >p
+{
+font-weight:600;
+font-size:15px;
+width:50%;
+<!--text-align:center;-->
+}
+
+</style>
+<script>
+    setTimeout(function(){
+    if($('#msg').length>0){
+    $('#msg').remove();
+    }
+    },2000)
+
+
+
+</script>
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,900" rel="stylesheet">
+
+
+{% include 'search/messages.html' %}
+<div class="row">
+    <div class="col">
+        <div class="card card-body">
+
+            <form method="get" style=" margin-top: -10px;margin-bottom: 15px;margin-left: 12px;">
+
+                &nbsp;{{myFilter.form}}
+
+                <button class="btn1 btn-primary" type="submit">Search</button>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+<br><br>
+<div class="container">
+    <div class="row">
+
+        {% if error_message %}
+        <p><strong>{{ error_message }}</strong></p>
+        {% endif %}
+
+        {% for institute in deg_institute %}
+        <div class="col-md-6">
+            <div class="card card-1" >
+                <div style="margin-left:30px;">
+                <h3>{{ institute.Institute_name }}</h3>
+                <span class="badge">{{ institute.Degree_Course }}</span>
+                <div class="side_by_side"><p>State : {{ institute.State }}</p>
+                    <p>Location
+                        : {{ institute.Location }} </p>
+                </div>
+                <div class="side_by_side">
+                <p >Total Fees : {% if institute.Total_Fees == '─' %}
+                    Not available
+                    {% else %}
+                    {{institute.Total_Fees}}
+                    {% endif %}
+                </p>
+                <p>
+                    Ranking :
+                    {% if institute.Ranked == '─' %}
+                    Not available
+                    {% else %}
+                    {{institute.Ranked}}
+                    {% endif %}
+                </p>
+                </div>
+                </div>
+                <a href="{% url 'search:favorite' institute.id %}"
+                   class="btn2 btn-primary {% if institute.is_favorite %}active{% endif %}" role="button">Interested</a>
+
+            </div>
+        </div>
+
+        {% endfor %}
+
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,25 @@
+body{
+	background-color:white ;
+}
+.navbar{
+
+    border-radius:0;
+}
+.navbar-brand{
+    font-family:"Sofia",cursive;
+}
+
+.glyphicon-star {
+    color: #CCCCCC;
+    font-size: 16px;
+}
+
+.glyphicon-star.active {
+    color: #FDB230;
+}
+.checked {
+  color: orange;
+}
+.unchecked{
+  color: grey;
+}

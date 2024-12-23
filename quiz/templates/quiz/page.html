@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagination</title>
+</head>
+<body>
+
+<div class="wrap">
+    {% for q in all_questions %}
+    <div class="row">
+
+        <p>{{ q.question }}</p>
+        <label class="lab"><input type="radio" id="q1" value="a" name="q{{forloop.counter}}" class="chkvalues">&nbsp;&nbsp;{{ q.op1 }}</label><br/>
+        <label class="lab"><input type="radio" id="q2" value="b" name="q{{forloop.counter}}" class="chkvalues">&nbsp;&nbsp;{{ q.op2 }}</label><br/>
+        <label class="lab"><input type="radio" id="q3" value="c" name="q{{forloop.counter}}" class="chkvalues">&nbsp;&nbsp;{{ q.op3 }}</label><br/>
+        <label class="lab"><input type="radio" id="q4" value="d" name="q{{forloop.counter}}" class="chkvalues">&nbsp;&nbsp;{{ q.op4 }}</label><br/>
+
+    </div>
+    <br>
+    {% endfor %}
+</div>
+{% if all_questions.has_previous %}
+<a href="{% url 'quiz:pagination' %}?page={{all_questions.previous_page_number}}">Previous</a>
+{% endif %}
+{% if all_questions.has_next %}
+<a href="{% url 'quiz:pagination' %}?page={{all_questions.next_page_number}}">Next</a>
+{% endif %}
+</body>
+</html>

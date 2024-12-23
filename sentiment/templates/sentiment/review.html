@@ -1,0 +1,702 @@
+{% extends 'sentiment/base.html' %}
+{% block title %}Write a review page{% endblock %}
+{% block body %}
+{% load crispy_forms_tags %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+
+    @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css);
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html,body{
+	width: 100%;
+	height: 100%;
+}
+
+body{
+	font-family: Arial, sans-serif;
+}
+
+
+.rating-wrap{
+	max-width: 480px;
+	margin: auto;
+	padding: 15px;
+	text-align: center;
+
+}
+
+.center{
+	width: 162px;
+	margin: auto;
+}
+
+
+#rating-value{
+	width: 110px;
+	margin: 40px auto 0;
+	padding: 10px 5px;
+	text-align: center;
+	box-shadow: inset 0 0 2px 1px rgba(46,204,113,.2);
+}
+
+/styling star rating/
+.rating{
+	border: none;
+	float: left;
+}
+
+.rating > input{
+	display: none;
+}
+
+.rating > label:before{
+	content: '\f005';
+	font-family: FontAwesome;
+	margin: 5px;
+	font-size: 1.5rem;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.rating > .half:before{
+	content: '\f089';
+	position: absolute;
+	cursor: pointer;
+}
+
+
+.rating > label{
+	color: #ddd;
+	float: right;
+	cursor: pointer;
+}
+
+.rating > input:checked ~ label,
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label{
+	color: #FDCC0D;
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label,
+.rating > input:checked ~ label:hover ~ label{
+	color:#FDCC0D;
+}
+<!--star1-->
+
+.rating-wrap1{
+	max-width: 480px;
+	padding: 15px;
+	box-shadow: 0 0 3px 0 rgba(0,0,0,.2);
+
+}
+
+.center1{
+	width: 162px;
+	margin-left:0px
+}
+
+
+#rating-value1{
+	width: 110px;
+	margin: 40px auto 0;
+	padding: 10px 5px;
+	text-align: center;
+	box-shadow: inset 0 0 2px 1px rgba(46,204,113,.2);
+}
+
+/styling star rating/
+.rating1{
+	border: none;
+	float: right;
+	margin-left:0px;
+}
+
+.rating1 > input{
+	display: none;
+}
+
+.rating1 > label:before{
+	content: '\f005';
+	font-family: FontAwesome;
+	margin: 5px;
+	font-size: 1.5rem;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.rating1 > .half:before{
+	content: '\f089';
+	position: absolute;
+	cursor: pointer;
+}
+
+
+.rating1 > label{
+	color: #ddd;
+	float: right;
+	cursor: pointer;
+}
+
+.rating1 > input:checked ~ label,
+.rating1:not(:checked) > label:hover,
+.rating1:not(:checked) > label:hover ~ label{
+	color: #FDCC0D;
+}
+
+.rating1 > input:checked + label:hover,
+.rating1 > input:checked ~ label:hover,
+.rating1 > label:hover ~ input:checked ~ label,
+.rating1 > input:checked ~ label:hover ~ label{
+	color:#FDCC0D;
+}
+
+<!--star2-->
+
+.rating-wrap2{
+	max-width: 480px;
+    margin-top:0px;
+	padding: 15px;
+	box-shadow: 0 0 3px 0 rgba(0,0,0,.2);
+	text-align: center;
+}
+
+.center2{
+	width: 162px;
+	margin-left:500px;
+
+}
+
+
+#rating-value2{
+	width: 110px;
+	margin: 40px auto 0;
+	padding: 10px 5px;
+	text-align: center;
+	box-shadow: inset 0 0 2px 1px rgba(46,204,113,.2);
+}
+
+/styling star rating/
+.rating2{
+	border: none;
+	float: left;
+}
+
+.rating2 > input{
+	display: none;
+}
+
+.rating2 > label:before{
+	content: '\f005';
+	font-family: FontAwesome;
+	margin: 5px;
+	font-size: 1.5rem;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.rating2 > .half:before{
+	content: '\f089';
+	position: absolute;
+	cursor: pointer;
+}
+
+
+.rating2 > label{
+	color: #ddd;
+	float: right;
+	cursor: pointer;
+}
+
+.rating2 > input:checked ~ label,
+.rating2:not(:checked) > label:hover,
+.rating2:not(:checked) > label:hover ~ label{
+	color:#FDCC0D ;
+}
+
+.rating2 > input:checked + label:hover,
+.rating2 > input:checked ~ label:hover,
+.rating2 > label:hover ~ input:checked ~ label,
+.rating2 > input:checked ~ label:hover ~ label{
+	color:#FDCC0D;
+}
+
+<!--star3-->
+
+.rating-wrap3{
+	max-width: 480px;
+	margin: auto;
+	padding: 15px;
+	box-shadow: 0 0 3px 0 rgba(0,0,0,.2);
+	text-align: center;
+}
+
+.center3{
+	width: 162px;
+	margin: auto;
+}
+
+
+#rating-value3{
+	width: 110px;
+	margin: 40px auto 0;
+	padding: 10px 5px;
+	text-align: center;
+	box-shadow: inset 0 0 2px 1px rgba(46,204,113,.2);
+}
+
+/styling star rating/
+.rating3{
+	border: none;
+	float: left;
+}
+
+.rating3 > input{
+	display: none;
+}
+
+.rating3 > label:before{
+	content: '\f005';
+	font-family: FontAwesome;
+	margin: 5px;
+	font-size: 1.5rem;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.rating3 > .half:before{
+	content: '\f089';
+	position: absolute;
+	cursor: pointer;
+}
+
+
+.rating3 > label{
+	color: #ddd;
+	float: right;
+	cursor: pointer;
+}
+
+.rating3 > input:checked ~ label,
+.rating3:not(:checked) > label:hover,
+.rating3:not(:checked) > label:hover ~ label{
+	color: #FDCC0D;
+}
+
+.rating3 > input:checked + label:hover,
+.rating3 > input:checked ~ label:hover,
+.rating3 > label:hover ~ input:checked ~ label,
+.rating3 > input:checked ~ label:hover ~ label{
+	color:#FDCC0D;
+}
+
+#ques
+{
+  width:900px;
+  margin-left:30px;
+    font-family: "Monaco";
+  font-weight:bold;
+  margin-left: -60px;
+
+}
+.text1
+{
+   position: absolute;
+  top: 125px;
+  color:#fff;
+  left: 200px;
+  color:white;
+padding: 2rem 1px;
+font-weight: bold;
+/*font-weight:1000px; */
+ font-size: 470%;
+
+}
+.text2
+{
+   position: absolute;
+  top: 200px;
+  left: 300px;
+  color:#fff;
+padding: 2rem 1px;
+ font-size: 3rem;
+    font-weight: 500;
+    text-shadow: 1px 1px 1px #000;
+
+}
+#content
+{
+    border:none;
+
+}
+#program-rate
+{
+  margin: -50px auto 0 auto;
+    background: #fff;
+    padding-top: 1em;
+     margin-left:100px;
+
+    box-shadow:1px 2px 2px #f2f2f2;
+
+
+    border:1px solid 	 #d9d9d9;
+      width: 900px;
+
+
+  padding: 20px;
+}
+
+.asteriskField
+{
+   color:red;
+}
+.rating1
+{
+  color:yellow;
+  margin-left:0px;
+}
+#top-text
+{
+  font-size: 28px;
+    font-weight: 500;
+    line-height: 42px;
+    padding: 10px 0;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #CE0085;
+    border: None;
+    margin-left: 340px;
+    width: 20%;
+    font-weight: bolder;
+}
+
+
+#id_review{
+height:110px;
+}
+  .footer-clean {
+  padding: 20px 0;
+  /background-color:red;/
+  background-color: #11aacb;
+  background-image:
+    linear-gradient(
+      to right,
+      #11aacb, #6CBF64
+    );
+  color:black;
+      margin-top: 35px;
+}
+
+.footer-clean h3 {
+  margin-top:0;
+  margin-bottom:12px;
+  font-weight:bold;
+    font-size: 18px;
+    margin-left: 22px;
+}
+
+.footer-clean ul {
+  padding:0;
+  list-style:none;
+  line-height:1.6;
+  font-size:20px;
+  margin-bottom:0;
+}
+
+.footer-clean ul a {
+  color:inherit;
+  text-decoration:none;
+  opacity:0.8;
+
+}
+.footer-clean ul li {
+    padding:0.5rem 0;
+
+}
+
+.footer-clean ul a:hover {
+  opacity:1;
+}
+
+.footer-clean .item.social {
+  text-align:right;
+}
+
+@media (max-width:767px) {
+  .footer-clean .item {
+    text-align:center;
+    padding-bottom:20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-clean .item.social {
+    text-align:center;
+  }
+}
+
+.footer-clean .item.social > a {
+  font-size:24px;
+  width:40px;
+  height:40px;
+  line-height:40px;
+  display:inline-block;
+  text-align:center;
+  border-radius:50%;
+  border:1px solid #ccc;
+  margin-left:10px;
+  margin-top:22px;
+  color:inherit;
+  opacity:0.75;
+}
+
+.footer-clean .item.social > a:hover {
+  opacity:0.9;
+}
+
+@media (max-width:991px) {
+  .footer-clean .item.social > a {
+    margin-top:40px;
+  }
+}
+
+@media (max-width:767px) {
+  .footer-clean .item.social > a {
+    margin-top:10px;
+  }
+}
+
+.footer-clean .copyright {
+    margin-top: 14px;
+    margin-bottom: 0;
+    font-size: 13px;
+    opacity: 0.6;
+    text-align: center;
+    margin-left: 75px;
+}
+</style>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+     $(document).ready(function(){
+            $("input[type='radio']").click(function(){
+            var radioValue = $("input[name='rating']:checked").val();
+            $('#rating-value').val(radioValue);
+            });
+     });
+          $(document).ready(function(){
+            $("input[type='radio']").click(function(){
+            var radioValue1 = $("input[name='rating1']:checked").val();
+            $('#rating-value1').val(radioValue1);
+            });
+     });
+               $(document).ready(function(){
+            $("input[type='radio']").click(function(){
+            var radioValue2 = $("input[name='rating2']:checked").val();
+            $('#rating-value2').val(radioValue2);
+            });
+     });
+                    $(document).ready(function(){
+            $("input[type='radio']").click(function(){
+            var radioValue3 = $("input[name='rating3']:checked").val();
+            $('#rating-value3').val(radioValue3);
+            });
+     });
+
+
+<!--     Count number of words -->
+
+    $(function(){
+    $("#id_review").keyup(function(event){
+
+    $("#countno").text($(this).val().length);
+    var x=$(this).val().length;
+
+    if (x<50)
+    {
+    $(this).css("border",'2px solid red');
+
+    }
+    else
+    {
+    $(this).css("border",'');
+    }
+    });
+    });
+
+
+</script>
+{% load static %}
+<div>
+  <img src="/media/type1.png" alt="Girl in a jacket" id="type">
+<h1 class="text1">REVIEW YOUR COLLEGE</h1>
+    <p   class="text2" >for a chance to win an amount</p>
+
+</div>
+<div id="program-rate" class="container" style="width:950px;height:215%;margin-left:160px;margin-bottom:10px;position:relative;">
+<div class="col-md-8 card mb-4  mt-3  "  id="content" style="    margin-left: 50px;">
+    <div class="card-body" id="ques">
+        <h2 id="top-text" style="font-family: system-ui;">If you're a current student,or an alumni, we want to know what you think of your College</h2>
+        <form action="" method="post" style="margin-top: 1.3em;">
+            {% csrf_token %}
+            {{ form | crispy }}
+            <div class="d-flex">
+
+                <p class="float-right"><span id="countno">0</span> Characters(50 character minimum)</p>
+                <br clear="both">
+            </div>
+<br>
+
+            <div class="rating-wrap1">
+                <label>Rate the quality of instruction for your major at your college</label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label>Rate your satisfaction with your degree program</label>
+                <div class="d-flex justify-content-left">
+                    <span class="rating1">
+                        <input type="radio" id="star15" name="rating1" value="5"/><label for="star15"
+                                                                                         class="full1"></label>
+                        <input type="radio" id="star14" name="rating1" value="4"/><label for="star14"
+                                                                                         class="full1"></label>
+                        <input type="radio" id="star13" name="rating1" value="3"/><label for="star13"
+                                                                                         class="full1"></label>
+                        <input type="radio" id="star12" name="rating1" value="2"/><label for="star12"
+                                                                                         class="full1"></label>
+                        <input type="radio" id="star11" name="rating1" value="1"/><label for="star11"
+                                                                                         class="full1"></label>
+                        <input name="star1" type="hidden" id="rating-value1"/>
+
+                    </span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+                    <span class="rating2">
+                        <input type="radio" id="star25" name="rating2" value="5"/><label for="star25"
+                                                                                         class="full2"></label>
+                        <input type="radio" id="star24" name="rating2" value="4"/><label for="star24"
+                                                                                         class="full2"></label>
+                        <input type="radio" id="star23" name="rating2" value="3"/><label for="star23"
+                                                                                         class="full2"></label>
+                        <input type="radio" id="star22" name="rating2" value="2"/><label for="star22"
+                                                                                         class="full2"></label>
+                        <input type="radio" id="star21" name="rating2" value="1"/><label for="star21"
+                                                                                         class="full2"></label>
+                        <input name="star2" type="hidden" id="rating-value2"/>
+
+                    </span>
+
+                </div>
+            </div>
+<br>
+            <div class="rating-wrap2">
+                <label>Rate how much your major/degree prepared you for a career</label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label>Overall rating</label>
+                    <div class="d-flex justify-content-left">
+                    <span class="rating3">
+                        <input type="radio" id="star35" name="rating3" value="5"/><label for="star35"
+                                                                                         class="full3"></label>
+                        <input type="radio" id="star34" name="rating3" value="4"/><label for="star34"
+                                                                                         class="full3"></label>
+                        <input type="radio" id="star33" name="rating3" value="3"/><label for="star33"
+                                                                                         class="full3"></label>
+                        <input type="radio" id="star32" name="rating3" value="2"/><label for="star32"
+                                                                                         class="full3"></label>
+                        <input type="radio" id="star31" name="rating3" value="1"/><label for="star31"
+                                                                                         class="full3"></label>
+                        <input name="star3" type="hidden" id="rating-value3"/>
+
+                    </span>
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="rating">
+                        <input type="radio" id="star5" name="rating" value="5"/><label for="star5"
+                                                                                       class="full"></label>
+                        <input type="radio" id="star4" name="rating" value="4"/><label for="star4"
+                                                                                       class="full"></label>
+                        <input type="radio" id="star3" name="rating" value="3"/><label for="star3"
+                                                                                       class="full"></label>
+                        <input type="radio" id="star2" name="rating" value="2"/><label for="star2"
+                                                                                       class="full"></label>
+                        <input type="radio" id="star1" name="rating" value="1"/><label for="star1"
+                                                                                       class="full"></label>
+                        <input name="star" type="hidden" id="rating-value"/>
+
+                    </span>
+
+
+                    </div>
+            </div>
+            <!--overall rating-->
+
+
+
+
+
+<br>
+
+            <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</div>
+<br>
+<div class="footer-clean">
+    <footer>
+        <div class="container1">
+            <div class="row">
+                <div class="col-sm-4 col-md-2 item" style="padding-left:60px;">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Web design</a></li>
+                        <li><a href="#">Development</a></li>
+                        <li><a href="#">Hosting</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 col-md-2 item" style="padding-left:60px;">
+                    <h3>About</h3>
+                    <ul>
+                        <li><a href="#">Company</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Legacy</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 col-md-3 item" style="padding-left:60px;">
+                    <h3>Careers</h3>
+                    <ul>
+                        <li><a href="#">Job openings</a></li>
+                        <li><a href="#">Employee success</a></li>
+                        <li><a href="#">Benefits</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i
+                        class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a
+                        href="#"><i class="icon ion-social-instagram"></i></a>
+                    <p class="copyright">Company Name © 2018</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+{% endblock %}

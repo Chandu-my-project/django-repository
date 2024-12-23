@@ -1,0 +1,748 @@
+{% extends 'sentiment/base.html' %}
+{% load static %}
+{% block title %}View Recommendation{% endblock %}
+{% block body %}
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+.h1
+{
+    color:gray;
+  text-shadow: 4px 4px 4px  gray;
+   text-align: center;
+   font-weight: bold;
+
+}
+
+}
+
+<!--for down card part-->
+.score
+{
+    color:black;
+  text-shadow: 4px 4px 4px  #6CBF64;
+   text-align: center;
+   font-weight: bold;
+
+}
+.score1
+{
+  font-family: 'Poppins', sans-serif;
+color:black;
+   text-align: center;
+
+
+}
+.score h2{
+ font-weight:800;
+ margin-top:20px;
+}
+
+
+.card-text{
+    font-family: cursive;
+    font-weight:100px;
+     left: 30%;
+  text-align:center;
+   font-size: 120%;
+
+}
+
+.card
+{
+    background-color:#f2f2f2;
+}
+
+
+
+
+.links:hover{
+text-decoration:none;
+}
+
+
+
+.card{
+  margin : auto;
+  width: 350px;
+  overflow : hidden;
+  border-radius : 0px;
+  background : white;
+  margin-top:50px;
+  transition: all .2s;
+  box-shadow:5px 5px 15px rgba(0,0,0, .1);
+
+}
+
+.card:hover {
+  box-shadow:5px 5px 25px rgba(0,0,0, .2);
+  transform: translate(-0.5px, -0.5px);
+}
+.skills-area:hover{
+  box-shadow:5px 5px 25px rgba(0,0,0, .2);
+  transform: translate(-0.5px, -0.5px);
+}
+
+.card:hover .icon1 svg{
+  animation : icon1jln 1s;
+}
+
+.img-cover{
+  position: relative;
+}
+
+.center{
+  width: 100px;
+  height:100px;
+  object-fit:cover;
+  margin-left:30%;
+}
+
+.icon1{
+  position:absolute;
+  top:0;
+  padding : 25px;
+  right:0;
+  border-bottom-left-radius:20px;
+  backdrop-filter: blur(20px);
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+}
+
+.desc{
+  padding : 1.5em ;
+  margin-top:-15px;
+}
+.desc h1{
+  display:inline;
+}
+.tdesc{
+  margin-bottom:40px;
+  width:100%;
+  height:50px;
+  overflow: auto;
+}
+
+.view{
+  text-decoration: none;
+  background-color: #11AACB;
+  padding: 15px 25px;
+  color:white;
+  border-radius: 0px;
+  display:block;
+  text-align: center;
+  transition: all .2s;
+  font-weight:600;
+  font-size:15px;
+   margin-top: auto;
+}
+.view:hover{
+ text-decoration: none;
+  background-color: SteelBlue;
+  color:white;
+}
+.view:hover svg{
+  animation : icon1jln 1s;
+}
+
+@keyframes icon1jln{
+  0%, 100% {
+    opacity : 1;
+    transform: translateX(0%);
+  }
+  50%{
+    opacity:0;
+    transform: translateX(100%);
+  }
+  70%{
+    opacity:0;
+    transform:translateX(-100%);
+  }
+}
+.top-image
+{
+margin-top:-84px;margin-right:-20px;width:130%; overflow: hidden;
+  color:blue;
+}
+
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 90px;
+    margin-left: -10px;
+}
+.col-sm-3,.col-lg-4{
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 70px;
+}
+.card-body{
+padding-bottom:10px;
+}
+
+<!--#####Score-->
+    *{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  font-family: 'Rubik', sans-serif;
+  color: #fff;
+  font-size: 18px;
+  line-height: 32px;
+}
+
+
+.circle-chart {
+  width: 100px;
+  height: 100px;
+}
+
+.circle-chart__circle {
+  stroke: #00acc1;
+  stroke-width: 2;
+  stroke-linecap: square;
+  fill: none;
+  animation: circle-chart-fill 2s reverse; /* 1 */
+  transform: rotate(-90deg); /* 2, 3 */
+  transform-origin: center; /* 4 */
+}
+
+
+
+.circle-chart__circle--negative {
+  transform: rotate(-90deg) scale(1,-1); /* 1, 2, 3 */
+}
+
+.circle-chart__background {
+  stroke: #efefef;
+  stroke-width: 2;
+  fill: none;
+}
+
+.circle-chart__info {
+  animation: circle-chart-appear 2s forwards;
+  opacity: 0;
+  transform: translateY(0.3em);
+}
+
+.circle-chart__percent {
+  alignment-baseline: central;
+  text-anchor: middle;
+  font-size: 8px;
+  font-weight: 600;
+}
+
+.circle-chart__subline {
+    alignment-baseline: central;
+    text-anchor: middle;
+    font-size: 0.2rem;
+}
+
+.success-stroke {
+  stroke: rgb(17,170,203);
+}
+
+.warning-stroke {
+  stroke: #ffbb33;
+}
+
+.danger-stroke {
+  stroke: #ff4444;
+}
+
+@keyframes circle-chart-fill {
+  to { stroke-dasharray: 0 100; }
+}
+
+@keyframes circle-chart-appear {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.skills{
+color: black;
+ font-family: 'Poppins', sans-serif;
+}
+
+.skills_section{
+  width: 100%;
+  margin: 0 auto;
+
+}
+
+.skill-head{
+  margin: 80px 0;
+}
+
+.skill-head h2{
+      font-size: 2rem;
+  font-weight: 500;
+}
+
+
+.skill-head p{
+  margin-bottom: 10px;
+}
+
+.skills-area {
+
+  display: flex;
+  flex-wrap: wrap;
+   margin : auto;
+
+  overflow : hidden;
+  border-radius : 0px;
+  background : white;
+    margin-top: -60px;
+  transition: all .2s;
+  box-shadow:5px 5px 15px rgba(0,0,0, .1);
+}
+
+.single-skill {
+  width: 25%;
+    margin-top: 30px;
+
+}
+
+.success-stroke {
+  stroke: rgb(17,170,203)
+}
+
+.circle-chart__background {
+  stroke: #ede4e4;
+  stroke-width: 1;
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+
+	.skill-head {
+		margin: 50px 0;
+	}
+
+	.skill-head h2 {
+		font-size: 30px;
+	}
+
+	.skill-icon {
+		width: 50%;
+	}
+
+	.skill-icon i {
+		font-size: 70px;
+	}
+
+	.single-skill {
+		width: 50%;
+	}
+
+	.circle-chart {
+		width: 130px;
+		height: 130px;
+	}
+}
+
+  .footer-clean {
+  padding: 20px 0;
+  /background-color:red;/
+  background-color: #11aacb;
+  background-image:
+    linear-gradient(
+      to right,
+      #11aacb, #6CBF64
+    );
+  color:black;
+      margin-top: 35px;
+}
+
+.footer-clean h3 {
+  margin-top:0;
+  margin-bottom:12px;
+  font-weight:bold;
+    font-size: 18px;
+    margin-left: 22px;
+}
+
+.footer-clean ul {
+  padding:0;
+  list-style:none;
+  line-height:1.6;
+  font-size:20px;
+  margin-bottom:0;
+}
+
+.footer-clean ul a {
+  color:inherit;
+  text-decoration:none;
+  opacity:0.8;
+
+}
+.footer-clean ul li {
+    padding:0.5rem 0;
+
+}
+
+.footer-clean ul a:hover {
+  opacity:1;
+}
+
+.footer-clean .item.social {
+  text-align:right;
+}
+
+@media (max-width:767px) {
+  .footer-clean .item {
+    text-align:center;
+    padding-bottom:20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-clean .item.social {
+    text-align:center;
+  }
+}
+
+.footer-clean .item.social > a {
+  font-size:24px;
+  width:40px;
+  height:40px;
+  line-height:40px;
+  display:inline-block;
+  text-align:center;
+  border-radius:50%;
+  border:1px solid #ccc;
+  margin-left:10px;
+  margin-top:22px;
+  color:inherit;
+  opacity:0.75;
+}
+
+.footer-clean .item.social > a:hover {
+  opacity:0.9;
+}
+
+@media (max-width:991px) {
+  .footer-clean .item.social > a {
+    margin-top:40px;
+  }
+}
+
+@media (max-width:767px) {
+  .footer-clean .item.social > a {
+    margin-top:10px;
+  }
+}
+
+.footer-clean .copyright {
+    margin-top: 14px;
+    margin-bottom: 0;
+    font-size: 13px;
+    opacity: 0.6;
+    text-align: center;
+    margin-left: 75px;
+}
+
+.col {
+    display: inline-block;
+}
+
+
+.container3 {
+    text-align: center;
+    padding: 0px;
+}
+
+
+
+
+</style>
+<script>
+    const clickC = document.querySelector(".desc");
+
+clickC.addEventListener ("click", function (){
+  const r = Math.round(Math.random() * 255 + 0);
+  const g = Math.round(Math.random() * 255 + 0);
+  const b = Math.round(Math.random() * 255 + 0);
+
+  document.body.style.backgroundColor = 'rgb('+ r +','+ g +','+ b +')';
+});
+  function makesvg(percentage, inner_text=""){
+
+  var abs_percentage = Math.abs(percentage).toString();
+  var percentage_str = percentage.toString();
+  var classes = ""
+
+  if(percentage < 0){
+    classes = "danger-stroke circle-chart__circle--negative";
+  } else if(percentage > 0 && percentage <= 30){
+    classes = "warning-stroke";
+  } else{
+    classes = "success-stroke";
+  }
+
+ var svg = '<svg class="circle-chart" viewbox="0 0 33.83098862 33.83098862" xmlns="http://www.w3.org/2000/svg">'
+     + '<circle class="circle-chart__background" cx="16.9" cy="16.9" r="15.9" />'
+     + '<circle class="circle-chart__circle '+classes+'"'
+     + 'stroke-dasharray="'+ abs_percentage+',100"    cx="16.9" cy="16.9" r="15.9" />'
+     + '<g class="circle-chart__info">'
+     + '   <text class="circle-chart__percent" x="17.9" y="17">'+percentage_str+'%</text>';
+
+  if(inner_text){
+    svg += '<text class="circle-chart__subline" x="16.91549431" y="22" >'+inner_text+'</text>'
+  }
+
+  svg += ' </g></svg>';
+
+  return svg
+}
+
+(function( $ ) {
+
+    $.fn.circlechart = function() {
+        this.each(function() {
+            var percentage = $(this).data("percentage");
+            var inner_text = $(this).text();
+            $(this).html(makesvg(percentage, inner_text));
+        });
+        return this;
+    };
+
+}( jQuery ));
+
+$(function () {
+     $('.circlechart').circlechart();
+});
+
+
+
+
+
+
+</script>
+<body>
+{% if user_rec %}
+<!--<div class="container1"-->
+<!--     style="margin-top:-60px;margin-left:1px;text-align: center;color: white;background-color: #000000;">-->
+<!--    <div class="image" style="">-->
+<!--        <img src="{% static 'quiz/images/laptop2.jpg' %}" alt="Italian Trulli" style="background-color: #000000;;margin-right:1px;width:100%;overflow: hidden;-->
+<!--  color:blue; opacity:0.8;">-->
+<!--        <div class="text-block">-->
+<!--            <h1 class="bn-text1" style="position: absolute;-->
+<!--  top: 25%;-->
+<!--  left: 18%;-->
+<!--  font-size: 3.8rem;color: white;    text-shadow: 2px 2px 4px #000000;text-transform: uppercase;font-weight: 900;">-->
+<!--                Your Recommendation</h1>-->
+<!--            &lt;!&ndash;    <p  class="bn-text2"  style="position:absolute;bottom:230px;left:450px;font-size: 130%; ">Tell us what you're looking for and get matched to college that are prefect for</p>&ndash;&gt;-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<section class="section skills" style="margin-left: 125px;margin-top: -55px;">
+    <div class="container">
+        <div class="row responsive">
+            <div class="col-md-12">
+                <div class="skills_section text-center">
+                    <div class="skill-head">
+                        <h2 class="font">
+                            My score in different field of study
+                        </h2>
+                        <!--                        <p>My score is different field my study-->
+                        <!--                        </p>-->
+                    </div>
+
+                    <div class="skills-area"
+                         style="gap: 25px;align:center;    padding-left: 55px;    padding-right: 0px;h    height: 210px; ">
+
+                        {% for sub,per in per_dic.items %}
+
+                        <div class="col-sm-2 single-skill">
+                            <div class="circlechart" data-percentage="{{per}}">
+                                <svg class="circle-chart" viewBox="0 0 33.83098862 33.83098862"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <circle class="circle-chart__background" cx="16.9" cy="16.9" r="15.9"></circle>
+                                    <circle class="circle-chart__circle success-stroke"
+                                            stroke-dasharray="{{per}},100"
+                                            cx="16.9" cy="16.9" r="15.9"></circle>
+                                    <g class="circle-chart__info">
+                                        <text class="circle-chart__percent" x="17.9" y="17">{{per}}%</text>
+                                        <!--                                        <text class="circle-chart__subline" x="16.91549431" y="22" style="width:50%;">-->
+                                        <!--                                            {{sub}}-->
+                                        <!--                                        </text>-->
+                                    </g>
+                                </svg>
+                            </div>
+                            <div class="container3">
+                                <p style="font-size:12.5px;font-weight:600;  text-transform: uppercase;">{{sub}}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<br>
+<div class="score1">
+    <h2>Based on your knowledge, we recommend studying</h2>
+</div>
+{% if not final %}
+<h2>You have scored zero in all subjects</h2>
+<h2>There are no recommendations for you, please study and reattempt the quiz !!</h2>
+{% else %}
+<div class="container-fluid" style="margin-bottom: 30px;    margin-top: -30px;">
+    <div class="row">
+        {% for sub,rec in final.items %}
+
+        <div class="col-sm-3 col-lg-4">
+
+            <a class="links" href="
+{% if sub == 'Natural Sciences & Mathematics' %}
+{% url 'degree:info' 14 %}
+{% elif sub == 'Arts, Design & Architecture' %}
+{% url 'degree:info' 3 %}
+{% elif sub == 'Computer Science & IT' %}
+{% url 'degree:info' 5 %}
+{% elif sub == 'Business & Management' %}
+{% url 'degree:info' 4 %}
+{% elif sub == 'Humanities' %}
+{% url 'degree:info' 10 %}
+{% else %}
+{% url 'degree:info' 1 %}
+{% endif %}">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="img-cover">
+
+                            {% if sub == 'Natural Sciences & Mathematics' %}
+                            <img class="center" src="{{ sub3_obj.clipart.url }}" alt="Card image" width="100"
+                                 height="100">
+
+                            {% elif sub == 'Arts, Design & Architecture' %}
+                            <img class="center" src="{{ sub1_obj.clipart.url }}" alt="Card image" width="100"
+                                 height="100">
+
+                            {% elif sub == 'Computer Science & IT' %}
+                            <img class="center" src="{{ sub2_obj.clipart.url }}" alt="Card image" width="100"
+                                 height="100">
+
+                            {% elif sub == 'Business & Management' %}
+                            <img class="center" src="{{ sub4_obj.clipart.url }}" alt="Card image" width="100"
+                                 height="100">
+
+                            {% elif sub == 'Humanities' %}
+                            <img class="center" src="{{ sub5_obj.clipart.url }}" alt="Card image" width="100"
+                                 height="100">
+
+                            {% else %}
+                            {{pass}}
+                            {% endif %}
+                            <div class="icon1">
+                                <svg width="23" height="18" viewBox="0 0 23 18" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 9H22M12 1.5L20.9333 8.2C21.4667 8.6 21.4667 9.4 20.9333 9.8L12 16.5"
+                                          stroke="black"
+                                          stroke-width="3"/>
+                                </svg>
+                            </div>
+
+                        </div>
+
+
+                        <div class="desc ">
+                            <h2 style="color:black;">{{sub}}</h2>
+                            <!--                        <p class="card__name">Our Recommendations</p>-->
+
+                            {% for r in rec|slice:":3" %}
+                            <p style="color:black;font-size:15px;">
+                                {{r}}
+                            </p>
+                            {% endfor %}
+                            <a class="view" href="{% if sub == 'Natural Sciences & Mathematics' %}
+{% url 'degree:info' 14 %}
+{% elif sub == 'Arts, Design & Architecture' %}
+{% url 'degree:info' 3 %}
+{% elif sub == 'Computer Science & IT' %}
+{% url 'degree:info' 5 %}
+{% elif sub == 'Business & Management' %}
+{% url 'degree:info' 4 %}
+{% elif sub == 'Humanities' %}
+{% url 'degree:info' 10 %}
+{% else %}
+{% url 'degree:info' 1 %}
+{% endif %}">View more
+                                <svg width="19" height="14" viewBox="0 0 23 18" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 9H22M12 1.5L20.9333 8.2C21.4667 8.6 21.4667 9.4 20.9333 9.8L12 16.5"
+                                          stroke="white"
+                                          stroke-width="3"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+{% else %}
+
+<h1>No degree recommendation for you.<br>
+    To get recommendation attain quiz by clicking this button</h1>
+<button><a href="{% url 'quiz:start_quiz' %}">Start Quiz</a></button>
+
+{% endif %}
+<div class="footer-clean">
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 col-md-2 item">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Web design</a></li>
+                        <li><a href="#">Development</a></li>
+                        <li><a href="#">Hosting</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 col-md-2 item">
+                    <h3>About</h3>
+                    <ul>
+                        <li><a href="#">Company</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Legacy</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 col-md-3 item">
+                    <h3>Careers</h3>
+                    <ul>
+                        <li><a href="#">Job openings</a></li>
+                        <li><a href="#">Employee success</a></li>
+                        <li><a href="#">Benefits</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i
+                        class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a
+                        href="#"><i class="icon ion-social-instagram"></i></a>
+                    <p class="copyright">Company Name © 2018</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+</body>
+{% endblock %}

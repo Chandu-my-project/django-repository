@@ -1,0 +1,777 @@
+{% extends 'sentiment/base.html' %}
+{% block title %}Personality Test{% endblock %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Anton' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Neucha' rel='stylesheet' type='text/css'>
+<style>
+
+body{
+background:white;
+}
+
+#wrapper{
+font-family: 'Poppins', sans-serif;
+	width:600px;
+	margin:50px auto;
+	height:400px;
+	position:relative;
+	color:#fff;
+
+	margin-bottom:200px;
+}
+
+#slider-wrap{
+	width:600px;
+	height:400px;
+	position:relative;
+	overflow:hidden;
+}
+
+#slider-wrap ul#slider{
+	width:100%;
+	height:100%;
+	position:absolute;
+	top:0;
+	left:0;
+}
+
+#slider-wrap ul#slider li{
+	float:left;
+	position:relative;
+	width:600px;
+	height:400px;
+    list-style:none;
+
+}
+
+#slider-wrap ul#slider li > div{
+	position:absolute;
+	top:20px;
+<!--    left:35px;-->
+
+}
+
+#slider-wrap ul#slider li > div h3{
+font-size: 16px;
+padding-top: 7px;
+letter-spacing: 1px;
+font-weight: 550;
+width: 100%;
+
+}
+h3{
+
+}
+#slider-wrap ul#slider li > div span{
+	font-family: Neucha, Arial, sans serif;
+	font-size:15px;
+}
+
+#slider-wrap ul#slider li img {
+    line-height: 400px;
+    display: block;
+    width: 575px;
+    height: 325px;
+    margin-left: 15px;
+    padding: 50px 50px;
+    margin-top: 15px;
+
+}
+
+#counter{
+	top: 30px;
+	right:35px;
+	width:auto;
+	position:absolute;
+	font-size:14.5px;
+	left: 500px;
+	font-weight:600;
+}
+
+#slider-wrap.active #next{right:0px;}
+#slider-wrap.active #previous{left:0px;}
+
+
+/*bar*/
+.container{
+    min-width: 15px;
+    margin-top: 275px;
+    height: 15px;
+    position: relative;
+    text-align: center;
+    display: flex;
+    padding: 10px;
+    margin-left:80px;
+
+}
+.item1 {
+  padding: 10px;
+
+}
+.item1 ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.item1 ul li span{
+padding-top:5px;
+}
+.next{
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 35px;
+    padding-bottom: 5px;
+
+}
+.next:focus{
+outline:none;
+}
+
+.next:hover{
+font-size:50px;
+}
+
+/*Header*/
+h1, h2{text-shadow:none; text-align:center;margin-left:10px;}
+h1{	color: #666; text-transform:uppercase;	font-size:30px;	 }
+h2{ color: #7f8c8d; font-family: 'Poppins', sans-serif;font-size:15px; margin-bottom:30px;font-weight:550;}
+h3{
+ font-family: 'Poppins', sans-serif;
+}
+/*ANIMATION*/
+#slider-wrap ul{
+	-webkit-transition: all 0.3s cubic-bezier(1,.01,.32,1);
+	-moz-transition: all 0.3s cubic-bezier(1,.01,.32,1);
+	-o-transition: all 0.3s cubic-bezier(1,.01,.32,1);
+	-ms-transition: all 0.3s cubic-bezier(1,.01,.32,1);
+	transition: all 0.3s cubic-bezier(1,.01,.32,1);
+
+}
+
+.span_next {
+    font-size: 15px;
+    margin-top:10px;
+     font-family: Neucha, Arial, sans serif;
+}
+h3
+{
+margin-left: 65px;
+}
+
+   .footer-clean {
+  padding: 20px 0;
+  /background-color:red;/
+  background-color: #11aacb;
+  background-image:
+    linear-gradient(
+      to right,
+      #11aacb, #6CBF64
+    );
+  color:black;
+    margin-top: -65px;
+      margin-bottom:0px;
+}
+.container1{
+  padding: 20px 0;
+  /background-color:red;/
+  background-color: #11aacb;
+  background-image:
+    linear-gradient(
+      to right,
+      #11aacb, #6CBF64
+    );
+  color:black;
+      margin-top: 50px;
+          max-width: 100%;
+          padding-left:40px;
+}
+.footer-clean h3 {
+  margin-top:0;
+  margin-bottom:12px;
+  font-weight:bold;
+    font-size: 18px;
+    margin-left: 22px;
+}
+
+.footer-clean ul {
+  padding:0;
+  list-style:none;
+  line-height:1.6;
+  font-size:20px;
+  margin-bottom:0;
+}
+
+.footer-clean ul a {
+  color:inherit;
+  text-decoration:none;
+  opacity:0.8;
+
+}
+.footer-clean ul li {
+    padding:0.5rem 0;
+
+}
+
+.footer-clean ul a:hover {
+  opacity:1;
+}
+
+.footer-clean .item.social {
+  text-align:right;
+}
+
+@media (max-width:767px) {
+  .footer-clean .item {
+    text-align:center;
+    padding-bottom:20px;
+    mar
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-clean .item.social {
+    text-align:center;
+  }
+}
+
+.footer-clean .item.social > a {
+  font-size:24px;
+  width:40px;
+  height:40px;
+  line-height:40px;
+  display:inline-block;
+  text-align:center;
+  border-radius:50%;
+  border:1px solid #ccc;
+  margin-left:10px;
+  margin-top:22px;
+  color:inherit;
+  opacity:0.75;
+}
+
+.footer-clean .item.social > a:hover {
+  opacity:0.9;
+}
+
+@media (max-width:991px) {
+  .footer-clean .item.social > a {
+    margin-top:40px;
+  }
+}
+
+@media (max-width:767px) {
+  .footer-clean .item.social > a {
+    margin-top:10px;
+  }
+}
+
+.footer-clean .copyright {
+    margin-top: 14px;
+    margin-bottom: 0;
+    font-size: 13px;
+    opacity: 0.6;
+    text-align: center;
+margin-left: 300px;
+}
+h1{
+color:#666;
+text-transform: uppercase;
+font-size: 25px;
+width: max-content;
+font-weight: 600;
+color:#666;
+margin-left:10px;
+}
+.fancy {
+	position: relative;
+	display: inline-block;
+	padding: 1.2em 2em;
+	text-decoration: none;
+	text-align: center;
+	cursor: pointer;
+	user-select: none;
+	color: white;
+	background: linear-gradient(135deg, #BE0E8C , #8752A3);
+		box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+border-radius: 4px;
+border:none;
+
+    font-weight: 600;
+        width: 215px;
+}
+.fancy1 {
+	position: relative;
+	display: inline-block;
+	padding: 1.2em 2em;
+	text-decoration: none;
+	text-align: center;
+	cursor: pointer;
+	user-select: none;
+	color: white;
+	background: linear-gradient(135deg, #11aacb, #6CBF64);
+		box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+border-radius: 4px;
+border:none;
+
+    FONT-WEIGHT: 600;
+    width: 205px;
+}
+.rec
+{
+    font-family: 'Poppins', sans-serif;
+    margin-top: 25px;
+    margin-right: 90px;
+    text-transform: uppercase;
+    color: #666;
+    margin-left: 75px;
+    font-size: 20px;
+    letter-spacing: 1px;
+    font-weight: 550;
+    width: 100%;
+}
+.para{
+    width: 90%;
+    font-weight: 500;
+    margin-left: 20px;
+    margin-top: 0px;
+    color: #7F8C8D;
+}
+.form{
+border-radius: 5px;
+    background: white;
+    box-shadow: 5px 5px 15px rgb(0 0 0 / 10%);
+    width: 70%;
+    margin-left: 95px;
+        margin-top: 10px;
+}
+
+a:hover{
+text-decoration:none;
+color:white;
+opacity:0.8;
+}
+input:hover[type="submit"] {
+opacity:0.8;
+}
+</style>
+
+<div id="wrapper">
+
+    <h1>How do you like to perform this activity?</h1>
+    <h2>Choose from the emoji's below</h2>
+
+    <div id="slider-wrap">
+        <ul id="slider">
+            <li data-color="#1abc9c">
+                <div>
+                    <h3 style=" margin-left: 50px;" >Test the quality of parts before shipment</h3>
+                </div>
+                <!--                <i class="fa fa-image"></i>-->
+                <img src="/media/R1.jpg" alt="" style="width: 560px;height:325px; margin-left: 0px;">
+            </li>
+
+
+            <li data-color="#3498db">
+                <div>
+                    <h3 style=" margin-left: 65px;">Study the movement of stars</h3>
+                </div>
+                <!--                <i class="fa fa-gears"></i>-->
+                <img style=" width: 570px;" src="/media/I1.jpg" alt="">
+            </li>
+
+
+            <li data-color="#9b59b6">
+                <div>
+                    <h3 style=" margin-left: 65px;">Conduct a musical choir</h3>
+                </div>
+                <!--                <i class="fa fa-sliders"></i>-->
+                <img src="/media/choir.jpg" alt="">
+            </li>
+
+            <li data-color="#34495e">
+                <div>
+                    <h3 style="">Give career guidance to people</h3>
+                </div>
+                <!--                <i class="fa fa-code"></i>-->
+                <img src="/media/S1.jpg" alt="">
+            </li>
+
+            <li data-color="#e74c3c">
+                <div>
+                    <h3>Sell merchandise at a department store</h3>
+                </div>
+                <!--                <i class="fa fa-microphone-slash"></i>-->
+                <img src="/media/E1.jpg" alt="">
+            </li>
+            <li data-color="#1abc9c">
+                <div>
+                    <h3 >Develop a spreadsheet using Excel</h3>
+                </div>
+                <!--                <i class="fa fa-microphone-slash"></i>-->
+                <img src="/media/C1.jpg" alt="">
+            </li>
+            <li data-color="#3498db">
+                <div>
+                    <h3>Lay brick or tile</h3>
+                </div>
+                <!--                <i class="fa fa-microphone-slash"></i>-->
+                <img src="/media/R2.jpg" alt="">
+            </li>
+            <li data-color="#9b59b6">
+                <div>
+                    <h3>Work in a chemistry lab</h3>
+                </div>
+                <!--                <i class="fa fa-microphone-slash"></i>-->
+                <img style="height:318px;" src="/media/I2(1).jpg" alt="">
+            </li>
+            <li data-color="#34495e">
+                <div>
+                    <h3>Play a musical instrument</h3>
+
+                </div>
+                <!--                <i class="fa fa-microphone-slash"></i>-->
+                <img src="/media/A2.jpg" alt="">
+            </li>
+            <li data-color="#e74c3c">
+                <div>
+                    <h3>Do volunteer work at a non-profit organization</h3>
+
+                </div>
+                <!--                <i class="fa fa-microphone-slash"></i>-->
+                <img src="/media/S2 (2).jpg" alt="">
+            </li>
+            <li data-color="#1abc9c">
+                <div>
+                    <h3>Manage a clothing store</h3>
+
+                </div>
+                <!--                <i class="fa fa-microphone-slash"></i>-->
+                <img src="/media/E2.jpg" alt="">
+            </li>
+            <li data-color="#3498db">
+                <div>
+                    <h3>Handle customers' bank transactions</h3>
+
+                </div>
+                <!--                <i class="fa fa-microphone-slash"></i>-->
+                <img src="/media/C2.jpg" alt="">
+            </li>
+            <li data-color="#9b59b6">
+                <div>
+                    <h3>Assemble electronics part</h3>
+
+                </div>
+                <!--                <i class="fa fa-microphone-slash"></i>-->
+                <img src="/media/R3.jpg" alt="">
+            </li>
+            <li data-color="#34495e">
+                <div>
+                    <h3>Develop a new medical treatment or procedure</h3>
+                </div>
+                <!--                <i class="fa fa-microphone-slash"></i>-->
+                <img src="/media/I3.jpg" alt="">
+            </li>
+            <li data-color="#e74c3c">
+                <div>
+                    <h3>Write books or plays</h3>
+                </div>
+                <!--                <i class="fa fa-microphone-slash"></i>-->
+                <img src="/media/A3.jpg" alt="">
+            </li>
+            <li data-color="#1abc9c">
+                <div>
+                    <h3>Help people with personal or emotional problems</h3>
+                </div>
+                <!--                <i class="fa fa-microphone-slash"></i>-->
+                <img src="/media/S3.jpg" alt="">
+            </li>
+            <li data-color="#3498db">
+                <div>
+                    <h3>Manage the operations of a hotel</h3>
+                </div>
+                <!--                <i class="fa fa-microphone-slash"></i>-->
+                <img src="/media/E3(2).jpg" alt="">
+            </li>
+            <li data-color="#9b59b6">
+                <div>
+                    <h3>Compute and record statistical data</h3>
+                </div>
+                <!--                <i class="fa fa-microphone-slash"></i>-->
+                <img src="/media/C3.jpg" alt="">
+            </li>
+            <li data-color="#34495e">
+                <div>
+                    <h3> Operate a grinding machine in a factory</h3>
+                </div>
+                <!--                <i class="fa fa-microphone-slash"></i>-->
+                <img src="/media/r4(3).jpg" alt="">
+            </li>
+            <li data-color="#e74c3c">
+                <div>
+                    <h3>Do research on plants or animals</h3>
+
+                </div>
+                <!--                <i class="fa fa-image"></i>-->
+                <img src="/media/I4.jpg" alt="">
+            </li>
+
+            <li data-color="#1abc9c">
+                <div>
+                    <h3>Draw pictures</h3>
+
+                </div>
+                <!--                <i class="fa fa-gears"></i>-->
+                <img src="/media/A4.jpg" alt="">
+            </li>
+
+            <li data-color="#3498db">
+                <div>
+                    <h3>Teach an individual an exercise routine</h3>
+
+                </div>
+                <!--                <i class="fa fa-sliders"></i>-->
+                <img src="/media/S4.jpg" alt="">
+            </li>
+
+            <li data-color="#9b59b6">
+                <div>
+                    <h3>Operate a beauty salon or barber shop</h3>
+
+                </div>
+                <!--                <i class="fa fa-code"></i>-->
+                <img src="/media/E4.jpg" alt="">
+            </li>
+
+            <li data-color="#34495e">
+                <div>
+                    <h3>Calculate the wages of employees</h3>
+
+                </div>
+                <!--                <i class="fa fa-microphone-slash"></i>-->
+                <img src="/media/C4.jpg" alt="">
+            </li>
+            <li data-color="#e74c3c">
+                <div>
+                    <h3>Install flooring in houses</h3>
+
+                </div>
+                <!--                <i class="fa fa-microphone-slash"></i>-->
+                <img src="/media/R5.jpg" alt="">
+            </li>
+            <li data-color="#1abc9c">
+                <div>
+                    <h3>Study whales and other types of marine life</h3>
+
+                </div>
+                <!--                <i class="fa fa-microphone-slash"></i>-->
+                <img src="/media/I5 (3).jpg" alt="">
+            </li>
+            <li data-color="#3498db">
+                <div>
+                    <h3>Design artwork for magazines</h3>
+
+                </div>
+                <!--                <i class="fa fa-microphone-slash"></i>-->
+                <img src="/media/A5.jpg" alt="">
+            </li>
+            <li data-color="#9b59b6">
+                <div>
+                    <h3>Help elderly people with their daily activities</h3>
+
+                </div>
+                <!--                <i class="fa fa-microphone-slash"></i>-->
+                <img src="/media/S5 (5).jpg" alt="">
+            </li>
+            <li data-color="#34495e">
+                <div>
+                    <h3>Manage a department within a large company</h3>
+
+                </div>
+                <!--                <i class="fa fa-microphone-slash"></i>-->
+                <img src="/media/E5.jpg" alt="">
+            </li>
+            <li data-color="#e74c3c">
+                <div>
+                    <h3>Keep shipping and receiving records</h3>
+<!--                    <span>Question #30</span>-->
+                </div>
+                <!--                <i class="fa fa-microphone-slash"></i>-->
+                <img src="/media/C5.jpg" alt="">
+            </li>
+            <li data-color="#E6E6E6;" style="background-color:#F3F3F4;" >
+                <div class="form">
+                <h4 class="rec" > View Recommendation </h4>
+                    <img src="/media/thinker.png" alt="" style="height: 50%;width: 50%;line-height: 0px;display: block;    margin-left: 110px;    padding: 5px 5px;    margin-top: -5px;">
+                <p style="text-align:center;font-size:16px;" class="para">View the recommendation of what major to study that match your personality.</p>
+                <form action="{% url 'ptest:prec' %}" method="post">
+                    {% csrf_token %}
+                    <div class="submit_form">
+                        <input type="hidden" name="points" id="txtvalues">
+                        <div class="flex-box" style="display:flex;">
+                            <a class="fancy1"  href="{% url 'ptest:personality_test' %}">RESTART</a>
+                        <input class="fancy" type="submit" value="RECOMMENDATION">
+                        </div>
+                    </div>
+                </form>
+                </div>
+            </li>
+
+        </ul>
+
+        <!--controls-->
+        <div id="counter"></div>
+
+        <div class="container">
+            <div class="item1"><ul><li><button class="next" value="0">😴</button></li><li><span class="span_next">Dislike</span></li></ul></div>
+            <div class="item1"><ul><li><button class="next" value="1">😕</button></li><li><span class="span_next">Slightly dislike</span></li></ul></div>
+            <div class="item1"><ul><li><button class="next" value="2">😐</button></li><li><span class="span_next">Neutral</span></li></ul></div>
+            <div class="item1"><ul><li><button class="next" value="3">😃</button></li><li><span class="span_next">Slightly enjoy</span></li></ul></div>
+            <div class="item1"><ul><li><button class="next" value="4">😍</button></li><li><span class="span_next">Enjoy</span></li></ul></div>
+
+
+        </div>
+
+        <!--controls-->
+
+    </div>
+
+</div>
+<div class="footer-clean" style="height: 250px;">
+    <footer>
+        <div class="container1">
+            <div class="row" style="  margin-top: -50px;">
+                <div class="col-sm-4 col-md-2 item">
+                    <h3>Services</h3>
+                    <ul >
+                        <li><a href="#">Design</a></li>
+                        <li><a href="#">Development</a></li>
+                        <li><a href="#">Hosting</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 col-md-2 item" style="margin-left:40px;">
+                    <h3>About</h3>
+                    <ul>
+                        <li><a href="#">Company</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Legacy</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 col-md-3 item" style="margin-left:20px;">
+                    <h3>Careers</h3>
+                    <ul>
+                        <li><a href="#">Job openings</a></li>
+                        <li><a href="#">Employee success</a></li>
+                        <li><a href="#">Benefits</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-5 item social" style="margin-left: 35%;margin-top: -210px;"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i
+                        class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a
+                        href="#"><i class="icon ion-social-instagram"></i></a>
+                    <p class="copyright">Company Name © 2018</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+
+
+
+<!-- partial -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src="./script.js"></script>
+<script>
+//current position
+var pos = 0;
+//number of slides
+var totalSlides = ($('#slider-wrap ul li').length)-10;
+//get the slide width
+var sliderWidth = $('#slider-wrap').width();
+
+$(document).ready(function(){
+
+	/*****************
+	 BUILD THE SLIDER
+	*****************/
+
+	//set width to be 'x' times the number of slides
+	$('#slider-wrap ul#slider').width(sliderWidth*totalSlides);
+
+    //next slide
+	$('.next').click(function(){
+		slideRight();
+	});
+
+	/*************************
+	 //*> OPTIONAL SETTINGS
+	************************/
+
+	//for each slide
+	$.each($('#slider-wrap ul li'), function() {
+	   //set its color
+	   var c = $(this).attr("data-color");
+	   $(this).css("background",c);
+
+	   //create a pagination
+	   var li = document.createElement('li');
+	});
+
+	//counter
+	countSlides();
+
+});//DOCUMENT READY
+
+/************
+ SLIDE RIGHT
+*************/
+function slideRight(){
+	pos++;
+if(pos==totalSlides-1){ $(".next").css("display", "none");
+$(".span_next").css("display", "none");
+	}
+	if(pos<=totalSlides-1){
+	$('#slider-wrap ul#slider').css('left', -(sliderWidth*pos)-40);}
+
+	//*> optional
+	countSlides();
+}
+
+/************************
+ //*> OPTIONAL SETTINGS
+************************/
+function countSlides(){
+  if(pos<totalSlides-1){
+	$('#counter').html(pos+1 + ' / ' + (totalSlides-1));
+	}
+	else
+	{
+	$('#counter').html('');
+	}
+}
+
+$(document).ready(function()
+   {   var txt="";
+       $('.next').click(function()
+       {
+       txt+=$(this).val()+","
+       $('#txtvalues').val(txt.substring(0,txt.length-1));
+       });
+   });
+
+</script>
+
+</body>
+</html>
+{% endblock %}

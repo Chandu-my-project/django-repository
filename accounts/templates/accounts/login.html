@@ -1,0 +1,263 @@
+{% load widget_tweaks %}
+{% load static %}
+
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <title>Demo Registration</title>
+    <script>
+
+        function toggle(){
+
+ var x = document.getElementById("id_password");
+ var y = document.getElementById("eye");
+  if (x.type === "password") {
+    x.type = "text";
+    y.style.color="black";
+  } else {
+    x.type = "password";
+    y.style.color="#fff";
+  }
+        }
+$(document).ready(function(){
+$("#reveal").on('click',function() {
+    $(this).find('i').toggleClass('glyphicon-eye-open').toggleClass('glyphicon-eye-close');
+    var $pwd = $("#id_password")
+    if ($pwd.attr('type') === 'password') {
+        $pwd.attr('type', 'text');
+    } else {
+        $pwd.attr('type', 'password');
+    }
+});
+});
+
+
+
+
+
+
+
+
+
+
+    </script>
+</head>
+<style>
+
+
+    .card-n
+    {
+
+     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
+     height:380px;
+
+    margin-bottom: 15px;
+    background-color:#523465;
+    text-color:white;
+    opacity:0.8;
+ background-size: 1800px 900px;
+   background-repeat: no-repeat;
+   background-position: top;
+  background-attachment: fixed;
+  transition: 0.3s;
+  border: 1px solid #696969;
+    margin-top: 90px;
+
+}
+
+   body {
+<!--          background: url({% static "accounts/images/back3.jpg" %});-->
+          background-size: cover;
+           background: linear-gradient(rgba(29, 38, 113, 0.5), rgba(195, 55, 100, 0.5)), url({% static "accounts/images/back3.jpg" %});
+            opacity:0.9;
+            background-repeat: no-repeat;
+background-position: top;
+  background-attachment: fixed;
+        }
+
+}
+span:hover
+{
+cursor: pointer;
+}
+#id{
+margin-left:100px;
+}
+.fa fa-eye{
+margin-left:100px;
+}
+#eye{
+color:#bababa;font-size:15px;margin-bottom:5px;padding:0;font-weight:400;
+}
+#eye:hover{
+pointer:cursor;
+}
+.form-control {
+display: block;
+width: 100%;
+height: 3.6rem;
+padding: .375rem .75rem;
+font-size: 1.55rem;
+font-weight: 400;
+line-height: 1.5;
+color:
+#495057;
+background-color:
+#fff;
+background-clip: padding-box;
+border: 1px solid
+#ced4da;
+border-radius: .25rem;
+transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+}
+.reveal{
+font-size: 2.2rem;
+
+}
+
+.form-control span #eye:hover{
+  cursor: pointer;
+}
+#eye:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+
+#eye {
+    margin-top:5px;
+    color: #fff;
+    font-size: 12px;
+    margin-bottom: 5px;
+    padding: 5px 5px;
+    font-weight: 400;
+    background-color: #10AACC;
+    font-weight: bold;
+    margin-left: 450px;
+    border-radius: 5px;
+
+}
+
+#eye:hover{
+background-color:#75c0d1;
+
+}
+
+a:hover{
+text-decoration:none;
+color:#67c5e6;
+}
+
+.form-group{
+color:white;font-weight:600;
+}
+
+
+
+
+i{
+    font-size: 18px;
+}
+.errorlist
+{
+ color:red;
+ font-size:15px;
+ list-style:none;
+ margin-left:0px;
+ text-align:center;
+ font-weight:550;
+margin-top:10px;
+}
+
+
+
+
+
+</style>
+
+
+<!--<div class="full">-->
+<div class="container">
+    <div class="row">
+        <section class="col-md-6 mx-auto">
+            <div class="card-n" style="height:auto;">
+
+                <div class="card-body">
+                    <h2 style="margin-top:20px;color:white; font-size: 200%; text-align:center;">SIGN IN</h2>
+                    <form action="{% url 'acc:login' %}" method="POST" novalidate>
+                        {% csrf_token %}
+                        {{ form.non_field_errors }}
+                        {{ form.source.errors }}
+                        {{ form.source }}
+                        <table border="1">
+
+                            <div class="form-group">
+                                <label>{{ form.username.label_tag }}</label>
+                                <input type="text" class="form-control" {{ form.username }}</input>
+                                {% if messages%}
+                                {% for message in messages %}
+                                <span class="errorlist">{{ message }}</span>
+                                {% endfor %}
+                                {% endif %}
+
+                            </div>
+
+                            <div class="form-group">
+                                <label>{{ form.password.label_tag }}</label>
+
+                                <div class="input-group">
+                                    <input type="password" class="form-control pwd" {{ form.password }}</input>
+                                    <span class="input-group-btn">
+                                   <button style="height:36px;" class="btn btn-default reveal" id="reveal"
+                                           type="button"><i toggle="#password-field"
+                                           class="glyphicon glyphicon-eye-open"></i></button>
+                                    </span>
+                                </div>
+                                {% if messages%}
+                                {% for message in messages %}
+                                <span class="errorlist" style="margin-top:10px;">{{ message }}</span>
+                                {% endfor %}
+                                {% endif %}
+
+                            </div>
+
+                        </table>
+                        <input type="submit"
+                               style="    font-weight:600;font-size:17.5px;margin-top:20px; background: deeppink; width: 50%;margin-left: 120px;"
+                               value="Login" class="btn btn-block btn-primary">
+
+                    </form>
+                    <center>
+                        <p style="font-weight:600;color:white;">Don't have an account?<a
+                                href="{% url 'acc:student_register' %}">
+                            Click here</a>, to create
+                            account</p>
+                        <a style="font-weight:600;color:white;" href="{% url 'password_reset' %}"> Forgotten your
+                            password?</a>
+                    </center>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!--</div>-->
+
+<!--<body id="bg" style="background-image: url('{% static "images/back3.jpg"%}')";>-->
+<body>
+</body>
+</html>
+
+
+

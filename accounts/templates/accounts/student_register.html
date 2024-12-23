@@ -1,0 +1,421 @@
+{% load widget_tweaks %}
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+          crossorigin="anonymous">
+    <title>Student Registration</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/path/to/bootstrap.min.css">
+    <script src="/path/to/jquery.min.js"></script>
+    <script src="/path/to/bootstrap-show-password.min.js"></script>
+    <script src="/path/to/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/path/to/fontawesome.min.css">
+
+</head>
+<script>
+<!--        $(document).ready(function()-->
+<!--        {-->
+<!--            var $majorvar=$("#id_major");-->
+<!--                $majorvar.on('change',function()-->
+<!--                {-->
+
+<!--              if ( this.value == 'science')-->
+
+<!--                  {-->
+<!--                    $("#science_combo").show();-->
+<!--                  }-->
+
+<!--                  else-->
+<!--                  {-->
+<!--                    $("#science_combo").hide();-->
+<!--                  }-->
+<!--             if(this.value == 'commerce')-->
+<!--                    {-->
+<!--                    $("#commerce_combo").show();-->
+<!--                  }-->
+
+<!--                  else-->
+<!--                  {-->
+<!--                    $("#commerce_combo").hide();-->
+<!--                  }-->
+<!--               if(this.value == 'arts')-->
+<!--                    {-->
+<!--                    $("#arts_combo").show();-->
+<!--                  }-->
+
+<!--                  else-->
+<!--                  {-->
+<!--                    $("#arts_combo").hide();-->
+<!--                  }-->
+<!--            }).trigger('change');-->
+<!--        });-->
+        $(document).ready(function()
+        {
+            var $majorvar=$("#id_major");
+                $majorvar.on('change',function()
+                {
+
+              if ( this.value == 'science')
+
+                  {
+                    $("#id_combo1").show();
+
+                  }
+
+                  else
+                  {
+                    $("#id_combo1").hide();
+                  }
+
+                if ( this.value == 'commerce')
+
+                  {
+                    $("#id_combo2").show();
+                  }
+
+                  else
+                  {
+                    $("#id_combo2").hide();
+                  }
+
+                  if ( this.value == 'arts')
+
+                  {
+                    $("#id_combo3").show();
+                  }
+
+                  else
+                  {
+                    $("#id_combo3").hide();
+                  }
+            }).trigger('change');
+        });
+
+$(document).ready(function(){
+
+$("#id_email").keyup(function(){
+var email=$("#id_email").val();
+var coll=$("#id_college_name").val().toLowerCase();
+var tcoll=$.trim(coll);
+if(validateEmail()){
+
+<!--				$("#id_email").css("border","2px solid green");-->
+				$("#emailMsg").html("<p class='text-success'>Validated</p>");
+			}
+			else{
+<!--				$("#id_email").css("border","2px solid red");-->
+				$("#emailMsg").html("<p class='text-danger'>Un-validated</p>");
+			}
+
+});
+});
+
+$(document).ready(function(){
+    $("#id_phone_number").keyup(function(){
+
+    if(validatePhone()){
+
+<!--                    $("#id_phone_number").css("border","2px solid green");-->
+                    $("#phoneMsg").html("<p class='text-success'>Validated</p>");
+                }
+                else{
+<!--                    $("#id_phone_number").css("border","2px solid red");-->
+                    $("#phoneMsg").html("<p class='text-danger'>Un-validated</p>");
+                }
+
+    });
+});
+
+$(document).ready(function(){
+    $("#id_first_name").keyup(function(){
+
+    if(validateName()){
+
+<!--                    $("#id_first_name").css("border","2px solid green");-->
+                    $("#fnameMsg").html("<p class='text-success'>Validated</p>");
+                }
+                else{
+<!--                    $("#id_first_name").css("border","2px solid red");-->
+                    $("#fnameMsg").html("<p class='text-danger'>Un-validated</p>");
+                }
+
+    });
+
+        $("#id_last_name").keyup(function(){
+
+    if(validateName1()){
+
+<!--                    $("#id_last_name").css("border","2px solid green");-->
+                    $("#lnameMsg").html("<p class='text-success'>Validated</p>");
+                }
+                else{
+<!--                    $("#id_last_name").css("border","2px solid red");-->
+                    $("#lnameMsg").html("<p class='text-danger'>Un-validated</p>");
+                }
+
+    });
+});
+
+
+function validateEmail(){
+var email=$("#id_email").val();
+var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+ if(reg.test(email)){
+		 	return true;
+		 }else{
+		 	return false;
+		 }
+
+}
+function validatePhone(){
+
+var phone=$("#id_phone_number").val();
+
+var reg =  /^[7-9]\d{9}$/;
+ if(reg.test(phone)){
+		 	return true;
+		 }else{
+		 	return false;
+		 }
+
+}
+
+function validateName(){
+
+var name=$("#id_first_name").val();
+
+var reg =  /^[a-zA-Z]{3,16}$/;
+ if(reg.test(name)){
+		 	return true;
+		 }else{
+		 	return false;
+		 }
+
+}
+
+function validateName1(){
+
+var name=$("#id_last_name").val();
+
+var reg =  /^[a-zA-Z]{1,16}$/;
+ if(reg.test(name)){
+		 	return true;
+		 }else{
+		 	return false;
+		 }
+
+}
+
+</script>
+
+<style>
+
+
+
+
+
+.eye{
+margin-left:100px;
+margin-top:100px;
+}
+
+
+
+
+   body {
+
+          background-size: cover;
+           background: linear-gradient(rgba(29, 38, 113, 0.5), rgba(195, 55, 100, 0.5)), url({% static "accounts/images/back3.jpg" %});
+            opacity:0.9;
+            background-repeat: no-repeat;
+            background-position: top;
+            background-attachment: fixed;
+            font-weight:600;
+        }
+
+
+
+
+
+
+
+
+
+ .card-n
+    {
+    border: 2px solid #696969;
+
+    margin-bottom: 15px;
+    background-color:#523465;
+    text-color:white;
+    opacity:0.8;
+ background-size: 1800px 900px;
+   background-repeat: no-repeat;
+   background-position: top;
+  background-attachment: fixed;
+    margin-top: 50px;
+
+}
+
+a:hover{
+text-decoration:none;
+color:#67c5e6;
+
+
+}
+
+
+.form-group{
+color:white;font-weight:600;
+}
+
+.errorlist
+{
+ color:red;
+ font-size:15px;
+ list-style:none;
+ margin-left:-35px;
+}
+
+
+
+
+
+
+</style>
+<script>
+    setTimeout(function(){
+    if($('#msg').length>0){
+    $('#msg').remove();
+    }
+    },5000)
+
+</script>
+
+</head>
+{% include 'search/messages.html' %}
+
+<div class="container">
+
+    <div class="row">
+
+        {% if error_message %}
+        <p><strong>{{ error_message }}</strong></p>
+        {% endif %}
+
+        <section class="col-md-6 mx-auto">
+            <div class="card-n">
+
+
+                <div class="card-body">
+                    <h2 style="margin-top:20px;color:white; font-size: 200%; text-align:center;">SIGN UP</h2>
+                    <form action="{% url 'acc:student_register' %}" method="POST" novalidate>
+                        {% csrf_token %}
+                        {{ form.non_field_errors }}
+                        {{ form.source.errors }}
+                        {{ form.source }}
+                        <table border="1">
+
+                            <div class="form-group">
+                                <label>{{ form.username.label_tag }}</label>
+                                <input type="text" class="form-control" {{ form.username }}</input>
+                                <span class="errorlist"> {{ form.username.errors }}</span>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label>{{ form.password1.label_tag }}</label>
+                                <input type="password" class="form-control" {{ form.password1 }}</input>
+                                <span class="errorlist"> {{ form.password1.errors }}</span>
+
+                            </div>
+                            <div class="form-group">
+                                <label>{{ form.password2.label_tag }}</label>
+                                <input type="password" class="form-control" {{ form.password2 }}</input>
+                                <span class="errorlist"> {{ form.password2.errors }}</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label>{{ form.first_name.label_tag }}</label>
+                                <input type="text" class="form-control" {{ form.first_name }}</input>
+                                <span class="errorlist"> {{ form.first_name.errors }}</span>
+                                <span id="fnameMsg"></span>
+                            </div>
+                            <div class="form-group">
+                                <label>{{ form.last_name.label_tag }}</label>
+                                <input type="text" class="form-control" {{ form.last_name }}</input>
+                                <span class="errorlist"> {{ form.last_name.errors }}</span>
+                                <span id="lnameMsg"></span>
+                            </div>
+                            <div class="form-group">
+                                <label>{{ form.phone_number.label_tag }}</label>
+
+                                <input type="text" class="form-control" {{ form.phone_number }}</input>
+                                <span id="phoneMsg"></span>
+                                <span class="errorlist"> {{ form.phone_number.errors }}</span>
+                                <div>
+
+                                    <div class="form-group">
+                                        <label>{{ form.edu_level.label_tag }}</label>
+
+                                        <select class="form-control" {{ form.edu_level }}</input>
+                                        <span class="errorlist"> {{ form.phone_number.errors }}</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>{{ form.grad_year.label_tag }}</label>
+
+                                        <input type="number" class="form-control" {{ form.grad_year }}</input>
+                                        <span class="errorlist"> {{ form.grad_year.errors }}</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>{{ form.college_name.label_tag }}</label>
+
+                                        <input type="text" class="form-control" {{ form.college_name }}</input>
+                                        <span class="errorlist"> {{ form.college_name.errors }}</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>{{ form.email.label_tag }}</label>
+
+                                        <input type="email" class="form-control" {{ form.email }}</input>
+                                        <span id="emailMsg"></span>
+                                        <span class="errorlist"> {{ form.email.errors }}</span>
+                                    </div>
+
+                        </table>
+                        <input type="submit" value="Register" class="btn btn-block btn-success"
+                               style="    background: deeppink; width: 50%;margin-left: 120px;">
+
+
+                    </form>
+
+
+                </div>
+            </div>
+        </section>
+    </div>
+    <p style="margin-left: 380px;    padding-bottom: 20px;font-weight:600px;color:white;    font-size: 1.1rem;">Already
+        have an account? <a href="{% url 'acc:login' %}">Click to
+            here to login</a></p>
+
+</div>
+
+
+<!--</div>-->
+
+<!--<body id="bg" style="background-image: url('{% static "images/back3.jpg"%}')";>-->
+<body>
+</body>
+</html>
+
+
+

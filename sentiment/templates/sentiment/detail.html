@@ -1,0 +1,200 @@
+{% extends 'sentiment/base.html' %}
+{% block title %}Institutes Degree Programs{% endblock %}
+{% block body %}
+{% load filter_tags %}
+<style>
+
+    .card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+    padding-top: 4.0rem;
+}
+
+<!--.row-card:hover {-->
+<!--  opacity: 0.8;-->
+<!--}-->
+
+    .checked {
+  color: orange;
+}
+
+.card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border-radius: .25rem;
+}
+th{
+font-size:20px;
+}
+td{
+font-size:16px;
+}
+.hide{
+display:none;
+height:100%;
+width:100%;
+}
+
+td{
+font-weight:500;
+}
+span{
+font-size:12px;
+font-weight:400px;
+font-family:Lucida Console;
+color: #737373;
+
+}
+</style>
+
+<div class="container-fluid" style="margin-top:-20px;">
+
+    <div class="row" >
+
+        <!-- Left Institute Info -->
+        <div class="col-sm-4 col-md-3" >
+            <div class="card" style="width:320px;border:none;margin-top:30px;">
+                <div class="card-body">
+                    {% if institute.picture %}
+                    <img src="{{ institute.picture.url }}" class="card-img-top" width="304" height="236">
+                    {% else %}
+                    <h3>No image to display</h3>
+                    {% endif %}
+                    <br><br>
+                    <h4 class="card-title">{{ institute.iname }} <small>{{ institute.type }}</small></h4>
+                    <h5 class="card-text">{{institute.founder}}</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Course Info -->
+        <div class="col-sm-8 col-md-9">
+            <div class="card" style="border:none;margin-top: 20px;">
+                <div class="card-body">
+
+                    <!--                    <h3>Degree Programs</h3>-->
+
+                    {% if error_message %}
+                    <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Course name</th>
+                            <th>Fees</th>
+                            <th>Rating</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for course in institute.course_set.all %}
+
+                        <tr class="myDiv">
+                            <td>
+                                {{ course.cname }}<br>
+                                <span> pos review : {{ course.pos }}</span>
+                            </td>
+                            <td>
+                                {{ course.fees }}<br>
+                                <span> neg review : {{ course.neg }}</span>
+                            </td>
+                            <td>
+                                {% if course.overall_rating == 1 %}
+                                <i class="fas fa-star checked"></i>
+                                <i class="fas fa-star unchecked"></i>
+                                <i class="fas fa-star unchecked"></i>
+                                <i class="fas fa-star unchecked"></i>
+                                <i class="fas fa-star unchecked"></i>
+                                <br>
+                                {% elif course.overall_rating == 2 %}
+                                <i class="fas fa-star checked"></i>
+                                <i class="fas fa-star checked"></i>
+                                <i class="fas fa-star unchecked"></i>
+                                <i class="fas fa-star unchecked"></i>
+                                <i class="fas fa-star unchecked"></i>
+                                <br>
+                                {% elif course.overall_rating == 3 %}
+                                <i class="fas fa-star checked"></i>
+                                <i class="fas fa-star checked"></i>
+                                <i class="fas fa-star checked"></i>
+                                <i class="fas fa-star unchecked"></i>
+                                <i class="fas fa-star unchecked"></i>
+                                <br>
+                                {% elif course.overall_rating == 4 %}
+                                <i class="fas fa-star checked"></i>
+                                <i class="fas fa-star checked"></i>
+                                <i class="fas fa-star checked"></i>
+                                <i class="fas fa-star checked"></i>
+                                <i class="fas fa-star unchecked"></i>
+                                <br>
+                                {% elif course.overall_rating == 5 %}
+                                <i class="fas fa-star checked"></i>
+                                <i class="fas fa-star checked"></i>
+                                <i class="fas fa-star checked"></i>
+                                <i class="fas fa-star checked"></i>
+                                <i class="fas fa-star checked"></i>
+                                <br>
+                                {% elif course.overall_rating == 0 %}
+                                <!--    <i class="fas fa-star unchecked"></i>-->
+                                <!--    <i class="fas fa-star unchecked"></i>-->
+                                <!--    <i class="fas fa-star unchecked"></i>-->
+                                <!--    <i class="fas fa-star unchecked"></i>-->
+                                <!--    <i class="fas fa-star unchecked"></i>-->
+                                {{continue}}
+                                {% else %}
+                                <p>No reviews yet</p>
+                                {% endif %}
+                                <span> neu review : {{ course.neu }}</span>
+                            </td>
+                            <td>
+                                {% if course.overall_rating %}
+                                <a href="/sentiment/{{institute.id}}/{{course.id}}" class="btn "
+                                   role="button"
+                                   style="background-color:#CE0085;color: #fff;font-weight:20px;text-align:center;font-weight:600;">View
+                                    Reviews</a>
+                                {% else %}
+                                <h1></h1>
+                                {% endif %}
+                            </td>
+
+
+                        </tr>
+<!--                        {% if course.graph and course.sentiment %}-->
+<!--                        <tr class="hide">-->
+<!--                            <td colspan="4">-->
+<!--                                <img src="{{ course.graph.url }}" alt="Card image" width="400" height="304">-->
+<!--                                <br>-->
+<!--                                {% with course.sentiment|split:":" as emotion %}-->
+<!--                                {% for emo in emotion %}-->
+<!--                                <span>{{emo}}</span>&nbsp;&nbsp;&nbsp;-->
+<!--                                {% endfor %}-->
+<!--                                {% endwith %}-->
+<!--                            </td>-->
+
+<!--                        </tr>-->
+<!--                        {% else %}-->
+<!--                        {{continue}}-->
+<!--                        {% endif %}-->
+
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

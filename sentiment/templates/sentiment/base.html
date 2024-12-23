@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>{% block title %}Degree Compass{% endblock %}</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Sofia" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{% static 'sentiment/style.css'%}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Sacramento&display=swap"
+          rel="stylesheet">
+    <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<style>
+
+body{
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+    background-color:white;
+}
+
+/* Navigation */
+.bg-div nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+<!--  margin-left:500px;-->
+  overflow: hidden;
+  background-color: #11aacb;
+  background-image:
+    linear-gradient(
+      to right,
+      #11aacb, #6CBF64
+    );
+}
+
+.bg-div nav ul li {
+  float:left;
+}
+.bg-div{
+color:white;
+}
+
+.bg-div nav ul li  {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  hover:;
+}
+
+
+.logo-img{
+    float: left;
+    position: relative;
+    margin: 10px 15px 15px 10px;
+    font-size:20px;
+
+}
+.bg-div{
+
+    background-color: #11AACB;
+  background-image:
+    linear-gradient(
+      to right,
+      #11aacb, #6CBF64
+    );
+   overflow: hidden;
+   text-align:right;
+}
+nav {
+    display: block;
+    margin-left: 650px;
+}
+.image
+{
+  margin-top:60px;
+}
+
+/*.text-block {
+  align-content :left;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: black;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+}*/
+.bn-text1
+{
+  /*position: absolute;
+   top: 200px;
+   left: 0;
+   width: 100%;
+   color:white;
+   float:none;*/
+   position: absolute;
+  top: 8px;
+  left: 100px;
+  color:white;
+padding: 2rem 1px;
+   font-size: 300%;
+
+ }
+ .bn-text2
+{
+  position: absolute;
+ top: 70px;
+
+  color:white;
+   left: 100px;
+  padding: 2rem 1px;
+
+ font-size: 130%;
+
+}
+
+..button {
+background-color: #00A6DE;
+color:white;
+width:190px;
+height:50px;
+margin-top:20px;
+margin-left:80px;
+border:none;
+font-size:20px;
+font-weight: 500px;
+text-align:center;
+}
+
+.button1 {
+  background-color: white;
+  color: black;
+  border: 2px solid #4CAF50;
+}
+
+.button1:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.fa, .fas {
+    font-weight: 900;
+    margin-top: 5px;
+}
+
+
+.dropdown-content {
+  display: none;
+  position: fixed;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 999;
+  color:black;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+
+
+.dropdown:hover .dropdown-content {
+  display: block;
+
+}
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    background-color: transparent;
+    font-weight:500;
+
+}
+
+
+.dropdown-content a:hover{
+  color:#11AACB ;
+  background-color: #6CBF64;
+}
+
+.bg-div nav ul li a:hover{
+  text-decoration:none;
+  color:#11AACB ;
+}
+
+
+
+</style>
+<body>
+
+
+<div class="bg-div">
+
+
+    <nav>
+        <ul>
+            {% if user.is_authenticated and user.is_student %}
+            <li class="white"><a href="{% url 'acc:shome' %}">Home</a></li>
+            <li class="white"><a href="#contact" style="text-decoration: none;">About Us</a></li>
+            <li class="white"><a href="#contact" style="text-decoration: none;">Contact Us</a></li>
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn">My Account</a>
+                <div class="dropdown-content">
+                    <a href="{% url 'quiz:view_rec' %}">My Recommendation</a>
+                    <a href="{% url 'search:interested' %}">My Wishlist</a>
+                    <a href="{% url 'acc:student_edit' %}">My Account</a>
+                </div>
+            </li>
+            <li class="white"><a href="{% url 'acc:logout' %}">Logout</a></li>
+            {% else %}
+            <li class="white"><a href="{% url 'home' %}">Home</a></li>
+            <li class="white"><a href="{% url 'home' %}">About Us</a></li>
+            <li class="white"><a href="{% url 'home' %}">Contact Us</a></li>
+            <li class="white"><a href="{% url 'acc:login' %}">Login</a></li>
+            <li class="white"><a href="{% url 'acc:register' %}">Sign up</a></li>
+            {% endif %}
+
+        </ul>
+    </nav>
+
+
+</div>
+
+
+{% block body %}
+{% endblock %}
+</body>
+</html>

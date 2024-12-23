@@ -1,0 +1,91 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+  <style>
+    #success
+    {
+         color: #6CE679;
+          font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+          font-weight: 900;
+          font-size: 30px;
+          margin-bottom: 10px;
+          margin-left:55px;
+
+          margin-top:0px;
+        }
+        p {
+              color: #404F5E;
+    font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+    font-size: 17.5px;
+    margin: 0;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 550;
+        }
+        #btn-close
+        {
+          margin-left:500px;
+          margin-bottom:20px;
+          color:black;
+        }
+        #btn-close:hover
+        {
+
+          color:red;
+          border: 1px solid red;
+        }
+  </style>
+  {% load static %}
+<div class="container">
+  <!-- Trigger the modal with a button -->
+  <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
+<div class="container">
+  <!-- Trigger the modal with a button -->
+  <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content" style="background-color:white; ">
+       <!--  <div class="modal-header"> -->
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <img style=" margin-left:230px;margin-top:40px;width:240;height:240; " src="/media/k2.png" alt="Girl in a jacket" id="type">
+          <h4 id="success" class="modal-title">SUCCESSFULLY SUBMITTED!!</h4>
+       <!--  </div> -->
+       <!--  <div  class="modal-body"> -->
+          <p>Your review is successfully submitted.<br> You can check it in the website.</p>
+       <!--  </div> -->
+       <!--  <div class="modal-footer"> -->
+          <a  id="btn-close" type="button" class="btn btn-default" data-dismiss="modal" href="{% url 'sentiment:review' %}">Close</a>
+     <!--    </div> -->
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+  <script type="text/javascript">
+    $(window).on('load', function() {
+        $('#myModal').modal('show');
+    });
+        $('.btn').click(function(){
+    $('#myModal').modal('hide');
+    overlay.appendTo(document.body).remove();
+    return false;
+    });
+</script>
+
+</body>
+</html>
